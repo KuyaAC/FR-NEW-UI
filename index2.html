@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="static/css/styles.css" />
+    <link href="https://fonts.cdnfonts.com/css/death-font" rel="stylesheet" />
+    <link
+      href="https://db.onlinewebfonts.com/c/a3cd6762eede2ec51f8999878ddc0b1e?family=CCSoliloquous+W00+Regular+V1"
+      rel="stylesheet"
+    />
+    <link
+      href="https://db.onlinewebfonts.com/c/839f900185b8671a4322018198143137?family=Spicy+Rice"
+      rel="stylesheet"
+    />
+    <link
+      href="https://db.onlinewebfonts.com/c/3d73cd0279f4c3db9b4f7db0305164f6?family=RansomNote"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.cdnfonts.com/css/death-note-font"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>For Real?</title>
+  </head>
+  <body>
+    <div class="containerMI">
+      <img src="static/images/CloseBtn.png" class="closeMI" />
+      <img src="static/images/B_info.png" class="changeMIbg" />
+      <div class="MItextPosition">
+        <div class="MItext1">
+          <h1 class="MIfilename">Filename.mp3</h1>
+          <div class="MIcontent1">
+            <h2>Prediction</h2>
+            <h3>Bonafide</h3>
+            <h2>Probability</h2>
+            <h3>0.10</h3>
+            <h2>Model Type</h2>
+            <h3>Hybrid</h3>
+          </div>
+          <div class="MIcontent2 hidden">
+            <h4>
+              A prediction of “Bonafide” means that this audio is more likely to
+              be genuine. The class is determined by a
+              <span class="clickable-threshold">custom threshold</span>.
+            </h4>
+
+            <h4>
+              Probability pertains to the chance that the audio is deepfake.
+            </h4>
+            <h4>“Hybrid Model” uses Handcrafted and WavLM Features.</h4>
+          </div>
+        </div>
+        <button class="arrwBtn2" id="toggleButton2">
+          <img src="static/images/arrwd.png" alt="Toggle Arrow" />
+        </button>
+      </div>
+      <div class="CustomThreshold" style="display: none">
+        <img src="static/images/ThresHybrid.png" />
+      </div>
+    </div>
+  </body>
+  <script>
+    const MIcontent1 = document.querySelector(".MIcontent1");
+    const MIcontent2 = document.querySelector(".MIcontent2");
+    const toggleButton = document.getElementById("toggleButton2");
+    const clickableThreshold = document.querySelector(".clickable-threshold");
+    const customThreshold = document.querySelector(".CustomThreshold");
+
+    // Toggle for the original content
+    toggleButton.addEventListener("click", () => {
+      MIcontent1.classList.toggle("hidden");
+      MIcontent2.classList.toggle("hidden");
+    });
+
+    // Toggle for the threshold display
+    clickableThreshold.addEventListener("click", () => {
+      if (customThreshold.style.display === "none") {
+        customThreshold.style.display = "block";
+      } else {
+        customThreshold.style.display = "none";
+      }
+    });
+  </script>
+</html>
