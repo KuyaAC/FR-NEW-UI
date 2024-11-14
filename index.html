@@ -61,6 +61,9 @@
                                         <div class="audio-container">
                                         </div>
                                     </div>
+                                    <button class="arrwBtn4" id="toggleButton4">
+                                        <img src="static/images/arrwd.png" alt="Toggle Arrow" />
+                                      </button>
                                 </div>
                             </div>
                         </div>
@@ -191,7 +194,7 @@
                 </div>
 
     
-                <div class="viewInfo">
+                <div class="viewInfo" style="display: block;">
                     <a class="arrow arrow-right" title="Model Information"></a>
                 </div>
                 <div class="containerMI" id="containerMI">
@@ -232,11 +235,22 @@
                   </div>
             </div>
         </div>
-        
+        <div class="blur-background"></div>
     </body>
     <script>
         let uploadedFiles = new Set(); // Keep track of uploaded files
 
+        function updateViewInfoVisibility() {
+    const containerC = document.getElementById('animatedContainerC');
+    const viewInfo = document.querySelector('.viewInfo');
+    
+    if (containerC.style.display === 'block') {
+        viewInfo.style.display = 'none';
+    } else {
+        viewInfo.style.display = 'block';
+    }
+}
+        
 function updateLogoVisibility() {
     const logo = document.getElementById('animatedContainerL');
     const container = document.getElementById('animatedContainer');
@@ -428,6 +442,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show card container
         cardContainer.style.display = 'block';
         
+        // Update viewInfo visibility
+        updateViewInfoVisibility();
+        
         // Trigger card animation
         setTimeout(() => {
             document.querySelector(".cardSpacing").classList.add("show-cards");
@@ -437,40 +454,65 @@ document.addEventListener('DOMContentLoaded', function() {
         updateLogoVisibility();
     });
 
-    // Initial card animation setup
-    setTimeout(() => {
-        document.querySelector(".cardSpacing").classList.add("show-cards");
-    }, 100);
+    // Update the reload functionality to handle viewInfo visibility
+    document.querySelector('.homeBtn').addEventListener('click', function() {
+        // After reload, containerC will be hidden, so viewInfo should be visible
+        const viewInfo = document.querySelector('.viewInfo');
+        viewInfo.style.display = 'block';
+    });
 });
 
-// Container Switching for info button
+// Update Container Switching for info button
 document.querySelector('.viewInfo').addEventListener('click', function() {
     const containers = {
         upload: document.getElementById('animatedContainer'),
         predict: document.getElementById('animatedContainerP'),
         analyze: document.getElementById('animatedContainerA'),
-        info: document.getElementById('animatedContainerI')
+        info: document.getElementById('animatedContainerI'),
+        custom: document.getElementById('animatedContainerC')
     };
-    
+
     if (containers.info.style.display === 'block') {
+        // Hide info container
         containers.info.style.display = 'none';
         
+        // Check if we have files uploaded
         if (uploadedFiles.size > 0) {
             containers.predict.style.display = 'block';
             containers.analyze.style.display = 'block';
             containers.upload.style.display = 'none';
+            containers.custom.style.display = 'none';
         } else {
+            // If no files, show the upload container
             containers.upload.style.display = 'block';
             containers.predict.style.display = 'none';
             containers.analyze.style.display = 'none';
+            containers.custom.style.display = 'none';
         }
     } else {
+        // Store the current state before showing info
+        const currentState = {
+            hasUploadedFiles: uploadedFiles.size > 0,
+            uploadVisible: containers.upload.style.display === 'block',
+            predictVisible: containers.predict.style.display === 'block',
+            analyzeVisible: containers.analyze.style.display === 'block',
+            customVisible: containers.custom.style.display === 'block'
+        };
+        
+        // Store the state on the element itself
+        this.lastState = currentState;
+
+        // Hide all containers
         Object.values(containers).forEach(container => {
             if (container) container.style.display = 'none';
         });
-        
+
+        // Show info container
         containers.info.style.display = 'block';
     }
+
+    // Update viewInfo visibility
+    updateViewInfoVisibility();
     
     // Update logo visibility
     updateLogoVisibility();
@@ -480,7 +522,7 @@ function showContainerMI() {
             const containerC = document.getElementById('animatedContainerC');
 
             containerMI.style.display = 'block';
-            containerC.style.display = 'none';
+            containerC.style.display = 'block';
         }
         const MIcontent1 = document.querySelector(".MIcontent1");
         const MIcontent2 = document.querySelector(".MIcontent2");
@@ -555,6 +597,56 @@ document.addEventListener('DOMContentLoaded', function() {
     toggleButton.style.transition = 'transform 0.3s ease';
 });
 
+
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleButton = document.getElementById('toggleButton4');
+    const container = document.querySelector('.audio-list');
+    const scrollAmount = 100; // Adjust scroll amount as needed
+    let isScrollingDown = true;
+
+    // Function to check if scrolled to bottom
+    function isScrolledToBottom() {
+        return container.scrollHeight - container.clientHeight <= container.scrollTop + 1;
+    }
+
+    // Function to check if scrolled to top
+    function isScrolledToTop() {
+        return container.scrollTop === 0;
+    }
+
+    toggleButton.addEventListener('click', function() {
+        if (isScrollingDown) {
+            // Scroll down
+            container.scrollBy({
+                top: scrollAmount,
+                behavior: 'smooth'
+            });
+
+            // If reached bottom, rotate arrow and change direction
+            if (isScrolledToBottom()) {
+                toggleButton.style.transform = 'rotate(180deg)';
+                isScrollingDown = false;
+            }
+        } else {
+            // Scroll up
+            container.scrollBy({
+                top: -scrollAmount,
+                behavior: 'smooth'
+            });
+
+            // If reached top, reset arrow rotation and change direction
+            if (isScrolledToTop()) {
+                toggleButton.style.transform = 'rotate(0deg)';
+                isScrollingDown = true;
+            }
+        }
+    });
+
+    // Add transition for smooth rotation
+    toggleButton.style.transition = 'transform 0.3s ease';
+});
+
+
 //SUMARRY POP UP PART
 document.addEventListener('DOMContentLoaded', function() {
     // Existing code remains the same...
@@ -580,6 +672,75 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+document.querySelector('.closeMI').addEventListener('click', function() {
+    const containerMI = document.getElementById('containerMI');
+    containerMI.style.display = 'none';
+});
 
+
+//BLUR EFFECT
+// Add this function to manage blur effect
+function toggleBlurBackground(show) {
+                const blurBackground = document.querySelector('.blur-background');
+                blurBackground.style.display = show ? 'block' : 'none';
+            }
+
+            // Update the existing showContainerMI function
+            function showContainerMI() {
+                const containerMI = document.getElementById('containerMI');
+                const containerC = document.getElementById('animatedContainerC');
+
+                containerMI.style.display = 'block';
+                containerC.style.display = 'block';
+                toggleBlurBackground(true);
+            }
+
+            // Update the MI close button event listener
+            document.querySelector('.closeMI').addEventListener('click', function() {
+                const containerMI = document.getElementById('containerMI');
+                containerMI.style.display = 'none';
+                toggleBlurBackground(false);
+            });
+
+            // Update the summary button click handlers
+            document.addEventListener('DOMContentLoaded', function() {
+                const summaryBtn = document.querySelector('.summaryBtn');
+                const sumClsBtn = document.querySelector('.sumClsBtn');
+                const containerSummary = document.querySelector('.containerSummary');
+
+                if (summaryBtn) {
+                    summaryBtn.addEventListener('click', function() {
+                        if (containerSummary) {
+                            containerSummary.style.display = 'block';
+                            toggleBlurBackground(true);
+                        }
+                    });
+                }
+
+                if (sumClsBtn) {
+                    sumClsBtn.addEventListener('click', function() {
+                        if (containerSummary) {
+                            containerSummary.style.display = 'none';
+                            toggleBlurBackground(false);
+                        }
+                    });
+                }
+
+                // Add click handler to close on background click (optional)
+                document.querySelector('.blur-background').addEventListener('click', function() {
+                    const containerMI = document.getElementById('containerMI');
+                    const containerSummary = document.querySelector('.containerSummary');
+                    
+                    if (containerMI.style.display === 'block') {
+                        containerMI.style.display = 'none';
+                    }
+                    if (containerSummary.style.display === 'block') {
+                        containerSummary.style.display = 'none';
+                    }
+                    toggleBlurBackground(false);
+                });
+            });
+
+            
     </script>
 </html>

@@ -125,7 +125,7 @@ html {
     border-radius: 10px;
     text-align: center;
     position: absolute; /* Absolute positioning */
-    top: 32%; /* Align to the bottom */
+    top: 35%; /* Align to the bottom */
     left: 0%; /* Center horizontally */
     transform: translateX(-50%); /* Offset for centering */
     width: 90%; /* Ensure full width within container */
@@ -197,7 +197,19 @@ html {
     transform: scale(0.54); /* Slightly increase the size */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Add a shadow effect */
 }
-#transition-overlay {
+.blur-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 958;
+    display: none;
+}
+/* #transition-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -210,7 +222,7 @@ html {
         opacity 0.1s ease,
         visibility 0.1s;
     z-index: 9999;
-}
+} */
 #transition-overlay.active {
     opacity: 1;
     visibility: visible;
@@ -444,7 +456,7 @@ html {
     width: 100%;
     height: auto;
     animation: slideDeck 4s ease-in-out forwards;
-    z-index: 2;
+    z-index: 10;
 }
 
 @keyframes slideDeck {
@@ -638,6 +650,10 @@ html {
     0% { opacity: 0; }
     100% { opacity: 1; }
   }
+  @keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
   
 /* SUMMARY POP UP */
 .containerSummary{
@@ -651,8 +667,11 @@ html {
     background-image: url(../images/summaryBG.png);
     background-size: cover;
         background-repeat: no-repeat;
+        animation: fadeIn .5s ease-in-out forwards;
+        z-index: 999;
         /* transform: scale(0.8); */
 }
+
 .SpredictContainer{
         align-items: center;
         justify-content: center;
@@ -692,11 +711,15 @@ html {
 
 /* POP UP MI CARD PART*/
 .containerMI {
+    position: absolute;
+    top: 10%;
+    
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* full viewport height */
-    width: 100vw; /* full viewport width */
+    animation: fadeIn .5s ease-in-out forwards;
+    display: none;
+    z-index: 999;
 }
 .changeMIbg{
     transform: scale(0.9);
@@ -707,15 +730,14 @@ html {
 .MItextPosition {
     position: absolute;
     top: 50%;
-    left: 63%;
-    transform: translate(-50%, -50%);
+    left: 103%;
     color: white; /* Adjust text color for better visibility */
     text-align: center;
 }
 .MIfilename {
     position: absolute;
-    top: 10%; /* Adjust as needed */
-    left: 50%;
+    top: 33%; /* Adjust as needed */
+    left: 200%;
     transform: translate(-50%, -50%);
     font-family: "Germania One";
     font-size: 42px;
@@ -723,11 +745,11 @@ html {
 }
 .MIcontent1{
     margin-left: 50px;
-    padding-top: 125px; /*adujust contentMI */
+    padding-top: 285px; /*adujust contentMI */
     width: 340px;
     height: 300px;
     position: relative;
-    left: 3.5%;
+    left: 157%;
 }
 .MIcontent1 h3{
     font-family: "fontsona4";
@@ -741,11 +763,11 @@ html {
 
 .MIcontent2{
     margin-left: 50px;
-    padding-top: 125px;; /*adujust contentMI */
+    padding-top: 285px; /*adujust contentMI */
     width: 340px;
     height: 300px;
     position: relative;
-    left: 3.5%;
+    left: 157%;
 }
 .MIcontent2 h4{
     font-family: "fontsona4";
@@ -754,8 +776,8 @@ html {
 
 .arrwBtn2 {
     position: absolute;
-    bottom: -15%; /* Adjust as needed */
-    left: 60%;
+    bottom: -13%; /* Adjust as needed */
+    left: 214%;
     transform: translateX(-50%);
     background: none;
     border: none;
@@ -771,17 +793,31 @@ html {
     padding-top: 20px;
     padding-bottom: 20px;
     
-
+}
+.arrwBtn4 {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    
 }
 .hidden {
     display: none;
   }
 
+/* BLUR EFFECT */
+/* Add these CSS classes */
+
+
 /* Threshold Pop UP */
 .CustomThreshold{
-    position: relative;
-    top:35%;
-    left: 10%;
+    position: fixed;
+    top: 45%;
+    left: 70%;
+    z-index: 1000;
     /* display: none; */
 }
 .clickable-threshold {
@@ -795,17 +831,22 @@ html {
   }
 
   .closeMI{
-    position: relative;
-    top:-36%;
-    left: 30%;
+    position: fixed;
+    top: 10%;
+    left: 75%;
     transform: scale(0.8);
   }
 
-
-.containerMI {
-    z-index: 100;
+/* .popup-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 58;
     display: none;
-}
+} */
 
 
 /*ANIMATIONS PART */
@@ -882,6 +923,7 @@ html {
         opacity: 1;
     }
 }
+
 
 #animatedContainerA {
     opacity: 0; /* Make the container initially invisible */
@@ -1014,10 +1056,12 @@ html {
 
 /* Audio list container */
 #audio-list {
-    max-height: 60vh;
+    height: 48vh;
+    width: 440px;
     overflow-y: auto;
     padding: 1rem;
-    padding-right: 1rem;
+    padding-right: 0rem;
+  
 }
 
 /**************************** ANALYZE TEXT PART***********************/
@@ -1240,17 +1284,7 @@ html {
 }
 
 /* MORE INFO ABOUT THE MODEL */
-.popUpMoreInfo {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    font-family: "CCSoliloquous W00 Regular V1";
-}
-
-.overlay {
+/* .overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -1261,7 +1295,7 @@ html {
     justify-content: center;
     align-items: center;
     z-index: 10;
-}
+} */
 .containerM {
     /* background-color: #e0e0e0; */
     padding: 20px;
