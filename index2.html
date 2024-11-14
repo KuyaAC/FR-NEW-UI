@@ -1,72 +1,465 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="static/css/styles.css" />
-    <link href="https://fonts.cdnfonts.com/css/death-font" rel="stylesheet" />
-    <link
-      href="https://db.onlinewebfonts.com/c/a3cd6762eede2ec51f8999878ddc0b1e?family=CCSoliloquous+W00+Regular+V1"
-      rel="stylesheet"
-    />
-    <link
-      href="https://db.onlinewebfonts.com/c/839f900185b8671a4322018198143137?family=Spicy+Rice"
-      rel="stylesheet"
-    />
-    <link
-      href="https://db.onlinewebfonts.com/c/3d73cd0279f4c3db9b4f7db0305164f6?family=RansomNote"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.cdnfonts.com/css/death-note-font"
-      rel="stylesheet"
-    />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <title>For Real?</title>
-  </head>
-  <body>
-    <div class="containerMI">
-      <img src="static/images/CloseBtn.png" class="closeMI" />
-      <img src="static/images/B_info.png" class="changeMIbg" />
-      <div class="MItextPosition">
-        <div class="MItext1">
-          <h1 class="MIfilename">Filename.mp3</h1>
-          <div class="MIcontent1">
-            <h2>Prediction</h2>
-            <h3>Bonafide</h3>
-            <h2>Probability</h2>
-            <h3>0.10</h3>
-            <h2>Model Type</h2>
-            <h3>Hybrid</h3>
-          </div>
-          <div class="MIcontent2 hidden">
-            <h4>
-              A prediction of “Bonafide” means that this audio is more likely to
-              be genuine. The class is determined by a
-              <span class="clickable-threshold">custom threshold</span>.
-            </h4>
-
-            <h4>
-              Probability pertains to the chance that the audio is deepfake.
-            </h4>
-            <h4>“Hybrid Model” uses Handcrafted and WavLM Features.</h4>
-          </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="static/css/styles.css" />
+        <link href="https://fonts.cdnfonts.com/css/death-font" rel="stylesheet">
+        <link href="https://db.onlinewebfonts.com/c/a3cd6762eede2ec51f8999878ddc0b1e?family=CCSoliloquous+W00+Regular+V1" rel="stylesheet">
+        <link href="https://db.onlinewebfonts.com/c/3d73cd0279f4c3db9b4f7db0305164f6?family=RansomNote" rel="stylesheet">
+        <link href="https://fonts.cdnfonts.com/css/death-note-font" rel="stylesheet">
+        <link href="https://db.onlinewebfonts.com/c/45ffe437a09fd50c32fa30c779e77e9d?family=Germania+One" rel="stylesheet"> 
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <title>For Real?</title>
+    </head>
+    <div>
+        <div class="background-container">
+            <div class="inputContainer">
+                <div class="FRBigLogo" id="animatedContainerL">
+                    <img src="static/images/LOGO.png">
+                </div>
+                <div class="container" id="animatedContainer">
+                    <div class="dot"></div>
+                    <div class="light-beam"></div>
+                    <div class="upload-box">
+                        <div class="upload-section">
+                            <div class="content">
+                                <div class="box">
+                                    <!-- UPLOAD AUDIO -->
+                                    <img
+                                        src="static/images/upload.png"
+                                        id="upload-button"
+                                        class="button-image"
+                                        alt="Upload Button"
+                                        onclick="document.getElementById('file-input').click()"
+                                    />
+                                    <input
+                                        type="file"
+                                        id="file-input"
+                                        accept="audio/*"
+                                        multiple
+                                        onchange="handleFileUpload(this.files)"
+                                        style="display: none"
+                                    />
+                                    <div id="file-info" style="display: none">
+                                        <p id="file-name"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="containerP" id="animatedContainerP" style="display: none;">
+                <div class="dot1"></div>
+                    <div class="light-beam"></div>
+                    <div class="predict-box">
+                        <div class="predict-section">
+                            <div class="contentP">
+                                <div class="prediction-box">
+                                    <div class="audio-list" id="audio-list">
+                                        <div class="audio-container">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="containerA" id="animatedContainerA" style="display: none;">
+                    <div class="PredictionText">
+                        <div class="PredictBox1">
+                            <img src="static/images/analyze.png">
+                        </div>
+                        <div class="PredictBox2">
+                            <img src="static/images/yes.png">
+                        </div>
+                        <div class="PredictBox3" onclick="location.reload()">
+                            <img src="static/images/No.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="containerI" id="animatedContainerI" style="display: none;">
+                    <!-- <button class="closeBtn" id="closeButton">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M18 6L6 18"></path>
+                        <path d="M6 6l12 12"></path>
+                      </svg>
+                    </button> -->
+                    <div class="info-box">
+                      <div class="textContent">
+                        <img class="imgLogo" src="static/images/FORREAL.png" alt="FOR REAL" />
+                        <p id="text1" class="active">
+                          While we strive to provide accurate results, the system is not
+                          guaranteed to be 100% correct in all cases. Audio deepfakes are
+                          evolving, and the system's predictions may vary based on
+                          numerous factors, including the quality of the audio and the
+                          presence of real-world noise.
+                        </p>
+                        <p id="text2">
+                          "For Real?" Audio Deepfake Detection system uses a combination
+                          of CQT, GFCC, and WavLM Features together with an XGBoost
+                          Classifier Trained on ASVspoof 2019 LA training Dataset.
+                        </p>
+                        <button class="arrwBtn" id="toggleButton">
+                          <img src="static/images/arrwd.png" alt="Toggle Arrow" />
+                        </button>
+                      </div>
+                    </div>
+                </div>
+                <div class="containerC" id="animatedContainerC" style="display: none;">
+                    <div class="preCardAnimation">
+                      <img class="deck" src="static/images/deck.png" />
+                    </div>
+                    <div class="cardSpacing">
+                      <div class="cardAnimation">
+                        <!-- First row of cards -->
+                        <div class="card-row">
+                            <div class="card1" onclick="showContainerMI()">
+                                <img src="static/images/bonafide card 11.png" />
+                            </div>
+                            <div class="card1" onclick="showContainerMI()">
+                                <img src="static/images/bonafide card 11.png" />
+                            </div>
+                            <div class="card1" onclick="showContainerMI()">
+                                <img src="static/images/spoof card 12.png" />
+                            </div>
+                            <div class="card1" onclick="showContainerMI()">
+                                <img src="static/images/spoof card 12.png" />
+                            </div>
+                            <div class="card1" onclick="showContainerMI()">
+                                <img src="static/images/bonafide card 11.png" />
+                            </div>
+                        </div>
+                        <!-- Second row of cards (if more than 5) -->
+                        <div class="card-row">
+                            <div class="card1" onclick="showContainerMI()">
+                                <img src="static/images/bonafide card 11.png" />
+                            </div>
+                            <div class="card1" onclick="showContainerMI()">
+                                <img src="static/images/bonafide card 11.png" />
+                            </div>
+                            <div class="card1" onclick="showContainerMI()">
+                                <img src="static/images/spoof card 12.png" />
+                            </div>
+                            <div class="card1" onclick="showContainerMI()">
+                                <img src="static/images/spoof card 12.png" />
+                            </div>
+                            <div class="card1" onclick="showContainerMI()">
+                                <img src="static/images/bonafide card 11.png" />
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="buttonSpacing">
+                      <div class="homeBtn" onclick="location.reload()">Home</div>
+                      <div class="summaryBtn">Summary</div>
+                    </div>
+                    
+                </div>
+    
+                <div class="viewInfo">
+                    <a class="arrow arrow-right" title="Model Information"></a>
+                </div>
+                <div class="containerMI" id="containerMI">
+                    <img src="static/images/CloseBtn.png" class="closeMI" />
+                    <img src="static/images/B_info.png" class="changeMIbg" />
+                    <div class="MItextPosition">
+                      <div class="MItext1">
+                        <h1 class="MIfilename">Filename.mp3</h1>
+                        <div class="MIcontent1">
+                          <h2>Prediction</h2>
+                          <h3>Bonafide</h3>
+                          <h2>Probability</h2>
+                          <h3>0.10</h3>
+                          <h2>Model Type</h2>
+                          <h3>Hybrid</h3>
+                        </div>
+                        <div class="MIcontent2 hidden">
+                          <h4>
+                            A prediction of “Bonafide” means that this audio is more likely to
+                            be genuine. The class is determined by a
+                            <span class="clickable-threshold">custom threshold</span>.
+                          </h4>
+              
+                          <h4>
+                            Probability pertains to the chance that the audio is deepfake.
+                          </h4>
+                          <h4>“Hybrid Model” uses Handcrafted and WavLM Features.</h4>
+                        </div>
+                      </div>
+                      <button class="arrwBtn2" id="toggleButton2">
+                        <img src="static/images/arrwd.png" alt="Toggle Arrow" />
+                      </button>
+                    </div>
+                    <div class="CustomThreshold" style="display: none;">
+                      <img src="static/images/ThresHybrid.png" />
+                    </div>
+                    
+                  </div>
+            </div>
         </div>
-        <button class="arrwBtn2" id="toggleButton2">
-          <img src="static/images/arrwd.png" alt="Toggle Arrow" />
-        </button>
-      </div>
-      <div class="CustomThreshold" style="display: none">
-        <img src="static/images/ThresHybrid.png" />
-      </div>
-    </div>
-  </body>
-  <script>
-    const MIcontent1 = document.querySelector(".MIcontent1");
-    const MIcontent2 = document.querySelector(".MIcontent2");
-    const toggleButton = document.getElementById("toggleButton2");
-    const clickableThreshold = document.querySelector(".clickable-threshold");
-    const customThreshold = document.querySelector(".CustomThreshold");
+        
+    </body>
+    <script>
+        let uploadedFiles = new Set(); // Keep track of uploaded files
+
+function updateLogoVisibility() {
+    const logo = document.getElementById('animatedContainerL');
+    const container = document.getElementById('animatedContainer');
+    
+    if (container.style.display === 'none') {
+        logo.style.display = 'none';
+    } else {
+        logo.style.display = 'block';
+    }
+}
+
+function createAudioElement(file) {
+    const audioContainer = document.createElement('div');
+    audioContainer.className = 'audio-container';
+
+    // Create audio content wrapper
+    const audioContent = document.createElement('div');
+    audioContent.className = 'audio-content';
+
+    // Create audio info section
+    const audioInfo = document.createElement('div');
+    audioInfo.className = 'audio-info';
+
+    // Add file name
+    const fileName = document.createElement('div');
+    fileName.className = 'file-name';
+    fileName.textContent = file.name;
+
+    // Add duration
+    const duration = document.createElement('div');
+    duration.className = 'duration';
+    duration.textContent = '0:00';
+
+    // Create controls section
+    const audioControls = document.createElement('div');
+    audioControls.className = 'audio-controls';
+
+    // Add play button
+    const playBtn = document.createElement('button');
+    playBtn.className = 'play-btn';
+    playBtn.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>';
+
+    // Add delete button
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'delete-btn';
+    deleteBtn.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>';
+
+    // Create hidden audio element
+    const audio = document.createElement('audio');
+    audio.style.display = 'none';
+    const source = URL.createObjectURL(file);
+    audio.src = source;
+
+    // Update duration when metadata is loaded
+    audio.addEventListener('loadedmetadata', () => {
+        const minutes = Math.floor(audio.duration / 60);
+        const seconds = Math.floor(audio.duration % 60);
+        duration.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    });
+
+    // Handle play button click
+    playBtn.onclick = () => {
+        if (audio.paused) {
+            audio.play();
+            playBtn.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+        } else {
+            audio.pause();
+            playBtn.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>';
+        }
+    };
+
+    // Handle delete button click
+    deleteBtn.onclick = () => {
+        audioContainer.remove();
+        URL.revokeObjectURL(source);
+        uploadedFiles.delete(file.name);
+    };
+
+    // Assemble the elements
+    audioInfo.appendChild(fileName);
+    audioInfo.appendChild(duration);
+    audioControls.appendChild(playBtn);
+    audioControls.appendChild(deleteBtn);
+    audioContent.appendChild(audioInfo);
+    audioContent.appendChild(audioControls);
+    audioContainer.appendChild(audioContent);
+    audioContainer.appendChild(audio);
+
+    return audioContainer;
+}
+
+function handleFileUpload(files) {
+    if (files.length === 0) return;
+
+    const uploadContainer = document.getElementById('animatedContainer');
+    const infoContainer = document.getElementById('animatedContainerP');
+    const analyzeContainer = document.getElementById('animatedContainerA');
+    const audioList = document.getElementById('audio-list');
+
+    // Process each file
+    Array.from(files).forEach(file => {
+        if (!file.type.startsWith('audio/')) {
+            alert(`File "${file.name}" is not an audio file.`);
+            return;
+        }
+
+        if (!uploadedFiles.has(file.name)) {
+            uploadedFiles.add(file.name);
+            const audioElement = createAudioElement(file);
+            audioList.appendChild(audioElement);
+        }
+    });
+
+    // Hide upload container and show info container
+    uploadContainer.style.display = 'none';
+    infoContainer.style.display = 'block';
+    analyzeContainer.style.display = 'block';
+    
+    // Update logo visibility
+    updateLogoVisibility();
+}
+
+// Event Listeners for file upload
+document.getElementById('file-input').addEventListener('change', function(event) {
+    handleFileUpload(event.target.files);
+});
+
+const uploadBox = document.querySelector('.upload-box');
+uploadBox.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    uploadBox.classList.add('dragover');
+});
+
+uploadBox.addEventListener('dragleave', () => {
+    uploadBox.classList.remove('dragover');
+});
+
+uploadBox.addEventListener('drop', (e) => {
+    e.preventDefault();
+    uploadBox.classList.remove('dragover');
+    handleFileUpload(e.dataTransfer.files);
+});
+
+// Event listener for the yes button and card animation
+document.addEventListener('DOMContentLoaded', function() {
+    // Info text switching functionality
+    const text1 = document.getElementById("text1");
+    const text2 = document.getElementById("text2");
+    const toggleButton = document.getElementById("toggleButton");
+    let showingText1 = true;
+
+    toggleButton.addEventListener("click", function () {
+        if (showingText1) {
+            text1.classList.remove("active");
+            setTimeout(() => {
+                text1.style.display = "none";
+                text2.style.display = "block";
+                setTimeout(() => {
+                    text2.classList.add("active");
+                }, 50);
+            }, 500);
+        } else {
+            text2.classList.remove("active");
+            setTimeout(() => {
+                text2.style.display = "none";
+                text1.style.display = "block";
+                setTimeout(() => {
+                    text1.classList.add("active");
+                }, 50);
+            }, 500);
+        }
+        showingText1 = !showingText1;
+    });
+
+    // Yes button click handler
+    const yesButton = document.querySelector('.PredictBox2');
+    yesButton.addEventListener('click', function() {
+        // Hide current containers
+        const predictContainer = document.getElementById('animatedContainerP');
+        const analyzeContainer = document.getElementById('animatedContainerA');
+        const infoContainer = document.getElementById('animatedContainerI');
+        const cardContainer = document.getElementById('animatedContainerC');
+        
+        // Hide current containers
+        predictContainer.style.display = 'none';
+        analyzeContainer.style.display = 'none';
+        infoContainer.style.display = 'none';
+        
+        // Show card container
+        cardContainer.style.display = 'block';
+        
+        // Trigger card animation
+        setTimeout(() => {
+            document.querySelector(".cardSpacing").classList.add("show-cards");
+        }, 100);
+        
+        // Update logo visibility
+        updateLogoVisibility();
+    });
+
+    // Initial card animation setup
+    setTimeout(() => {
+        document.querySelector(".cardSpacing").classList.add("show-cards");
+    }, 100);
+});
+
+// Container Switching for info button
+document.querySelector('.viewInfo').addEventListener('click', function() {
+    const containers = {
+        upload: document.getElementById('animatedContainer'),
+        predict: document.getElementById('animatedContainerP'),
+        analyze: document.getElementById('animatedContainerA'),
+        info: document.getElementById('animatedContainerI')
+    };
+    
+    if (containers.info.style.display === 'block') {
+        containers.info.style.display = 'none';
+        
+        if (uploadedFiles.size > 0) {
+            containers.predict.style.display = 'block';
+            containers.analyze.style.display = 'block';
+            containers.upload.style.display = 'none';
+        } else {
+            containers.upload.style.display = 'block';
+            containers.predict.style.display = 'none';
+            containers.analyze.style.display = 'none';
+        }
+    } else {
+        Object.values(containers).forEach(container => {
+            if (container) container.style.display = 'none';
+        });
+        
+        containers.info.style.display = 'block';
+    }
+    
+    // Update logo visibility
+    updateLogoVisibility();
+});
+function showContainerMI() {
+            const containerMI = document.getElementById('containerMI');
+            const containerC = document.getElementById('animatedContainerC');
+
+            containerMI.style.display = 'block';
+            containerC.style.display = 'none';
+        }
+        const MIcontent1 = document.querySelector(".MIcontent1");
+        const MIcontent2 = document.querySelector(".MIcontent2");
+        const toggleButton = document.getElementById("toggleButton2");
+        const clickableThreshold = document.querySelector(".clickable-threshold");
+        const customThreshold = document.querySelector(".CustomThreshold");
 
     // Toggle for the original content
     toggleButton.addEventListener("click", () => {
@@ -75,12 +468,16 @@
     });
 
     // Toggle for the threshold display
-    clickableThreshold.addEventListener("click", () => {
-      if (customThreshold.style.display === "none") {
-        customThreshold.style.display = "block";
-      } else {
-        customThreshold.style.display = "none";
-      }
-    });
-  </script>
+   // Initially set the display to "none" in JavaScript
+customThreshold.style.display = "none";
+
+clickableThreshold.addEventListener("click", () => {
+  // Check the display property and toggle it
+  if (customThreshold.style.display === "none") {
+    customThreshold.style.display = "block";
+  } else {
+    customThreshold.style.display = "none";
+  }
+});
+    </script>
 </html>

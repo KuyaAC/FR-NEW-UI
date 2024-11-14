@@ -80,18 +80,6 @@
                     </div>
                 </div>
                 <div class="containerI" id="animatedContainerI" style="display: none;">
-                    <!-- <button class="closeBtn" id="closeButton">
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path d="M18 6L6 18"></path>
-                        <path d="M6 6l12 12"></path>
-                      </svg>
-                    </button> -->
                     <div class="info-box">
                       <div class="textContent">
                         <img class="imgLogo" src="static/images/FORREAL.png" alt="FOR REAL" />
@@ -163,6 +151,45 @@
                     </div>
                     
                 </div>
+
+                <div class="containerSummary" style="display: none;">
+                    <img src="static/images/CloseBtn.png" class="sumClsBtn" />
+                    <div class="SpredictContainer">
+                        <div class="sumCard" style="background-image: url(static/images/SpoofSummary.png); background-size: cover; background-repeat: no-repeat;">
+                            <p class="sumFileN">Filename.mp3</p>
+                            <p class="sumPrediction">Spoof</p>
+                        </div>
+                        <div class="sumCard" style="background-image: url(static/images/BonaSummary.png); background-size: cover; background-repeat: no-repeat;">
+                            <p>Filename.mp3</p>
+                            <p>Bonafide</p>
+                        </div>
+                        <div class="sumCard" style="background-image: url(static/images/SpoofSummary.png); background-size: cover; background-repeat: no-repeat;">
+                            <p>Filename.mp3</p>
+                            <p>Spoof</p>
+                        </div>
+                        <div class="sumCard" style="background-image: url(static/images/BonaSummary.png); background-size: cover; background-repeat: no-repeat;">
+                            <p>Filename.mp3</p>
+                            <p>Bonafide</p>
+                        </div>
+                        <div class="sumCard" style="background-image: url(static/images/SpoofSummary.png); background-size: cover; background-repeat: no-repeat;">
+                            <p>Filename.mp3</p>
+                            <p>Spoof</p>
+                        </div>
+                        <div class="sumCard" style="background-image: url(static/images/BonaSummary.png); background-size: cover; background-repeat: no-repeat;">
+                            <p>Filename.mp3</p>
+                            <p>Bonafide</p>
+                        </div>
+                        <div class="sumCard" style="background-image: url(static/images/SpoofSummary.png); background-size: cover; background-repeat: no-repeat;">
+                            <p>Filename.mp3</p>
+                            <p>Spoof</p>
+                        </div>
+
+                        </div>
+                    <button class="arrwBtn3" id="toggleButton3">
+                        <img src="static/images/arrwd.png" alt="Toggle Arrow" />
+                      </button>
+                </div>
+
     
                 <div class="viewInfo">
                     <a class="arrow arrow-right" title="Model Information"></a>
@@ -479,5 +506,80 @@ clickableThreshold.addEventListener("click", () => {
     customThreshold.style.display = "none";
   }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleButton = document.getElementById('toggleButton3');
+    const container = document.querySelector('.SpredictContainer');
+    const scrollAmount = 100; // Adjust scroll amount as needed
+    let isScrollingDown = true;
+
+    // Function to check if scrolled to bottom
+    function isScrolledToBottom() {
+        return container.scrollHeight - container.clientHeight <= container.scrollTop + 1;
+    }
+
+    // Function to check if scrolled to top
+    function isScrolledToTop() {
+        return container.scrollTop === 0;
+    }
+
+    toggleButton.addEventListener('click', function() {
+        if (isScrollingDown) {
+            // Scroll down
+            container.scrollBy({
+                top: scrollAmount,
+                behavior: 'smooth'
+            });
+
+            // If reached bottom, rotate arrow and change direction
+            if (isScrolledToBottom()) {
+                toggleButton.style.transform = 'rotate(180deg)';
+                isScrollingDown = false;
+            }
+        } else {
+            // Scroll up
+            container.scrollBy({
+                top: -scrollAmount,
+                behavior: 'smooth'
+            });
+
+            // If reached top, reset arrow rotation and change direction
+            if (isScrolledToTop()) {
+                toggleButton.style.transform = 'rotate(0deg)';
+                isScrollingDown = true;
+            }
+        }
+    });
+
+    // Add transition for smooth rotation
+    toggleButton.style.transition = 'transform 0.3s ease';
+});
+
+//SUMARRY POP UP PART
+document.addEventListener('DOMContentLoaded', function() {
+    // Existing code remains the same...
+
+    // Add event listener for summary button
+    const summaryBtn = document.querySelector('.summaryBtn');
+    const sumClsBtn = document.querySelector('.sumClsBtn');
+    const containerSummary = document.querySelector('.containerSummary');
+
+    if (summaryBtn) {
+        summaryBtn.addEventListener('click', function() {
+            if (containerSummary) {
+                containerSummary.style.display = 'block';
+            }
+        });
+    }
+
+    if (sumClsBtn) {
+        sumClsBtn.addEventListener('click', function() {
+            if (containerSummary) {
+                containerSummary.style.display = 'none';
+            }
+        });
+    }
+});
+
     </script>
 </html>
