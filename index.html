@@ -49,6 +49,7 @@
                         </div>
                     </div>
                 </div>
+        
                 
                 <div class="containerP" id="animatedContainerP" style="display: none;">
                 <div class="dot1"></div>
@@ -232,10 +233,24 @@
                       <img src="static/images/ThresHybrid.png" />
                     </div>
                     
-                  </div>
+                </div>
+                
             </div>
+            <!-- SWITCH MODEL -->
+            <div class="toggle-container">
+                <div class="toggle-circle">
+                  <img src="static/images/HybridLogo.png" style=""> 
+                </div>
+                <span class="toggle-text">Hybrid</span>
+              </div>
+
         </div>
+
+        <!-- Background blur effect -->
         <div class="blur-background"></div>
+        
+    </div>
+  
     </body>
     <script>
         let uploadedFiles = new Set(); // Keep track of uploaded files
@@ -517,6 +532,10 @@ document.querySelector('.viewInfo').addEventListener('click', function() {
     // Update logo visibility
     updateLogoVisibility();
 });
+
+
+
+
 function showContainerMI() {
             const containerMI = document.getElementById('containerMI');
             const containerC = document.getElementById('animatedContainerC');
@@ -741,6 +760,21 @@ function toggleBlurBackground(show) {
                 });
             });
 
+    //SWITCH MODEL PART
+    const toggleContainer = document.querySelector('.toggle-container');
+    const toggleText = document.querySelector('.toggle-text');
+   
+    
+    toggleContainer.addEventListener('click', () => {
+      toggleContainer.classList.toggle('active2');
+      if (toggleContainer.classList.contains('active2')) {
+        toggleText.textContent = 'HandCrafted';
+        
+      } else {
+        toggleText.textContent = 'Hybrid';
+      
+      }
+    });
             
     </script>
 </html>
