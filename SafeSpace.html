@@ -8,6 +8,7 @@
         <link href="https://db.onlinewebfonts.com/c/a3cd6762eede2ec51f8999878ddc0b1e?family=CCSoliloquous+W00+Regular+V1" rel="stylesheet">
         <link href="https://db.onlinewebfonts.com/c/3d73cd0279f4c3db9b4f7db0305164f6?family=RansomNote" rel="stylesheet">
         <link href="https://fonts.cdnfonts.com/css/death-note-font" rel="stylesheet">
+        <link href="https://db.onlinewebfonts.com/c/45ffe437a09fd50c32fa30c779e77e9d?family=Germania+One" rel="stylesheet"> 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <title>For Real?</title>
     </head>
@@ -60,6 +61,9 @@
                                         <div class="audio-container">
                                         </div>
                                     </div>
+                                    <button class="arrwBtn4" id="toggleButton4">
+                                        <img src="static/images/arrwd.png" alt="Toggle Arrow" />
+                                      </button>
                                 </div>
                             </div>
                         </div>
@@ -79,18 +83,6 @@
                     </div>
                 </div>
                 <div class="containerI" id="animatedContainerI" style="display: none;">
-                    <!-- <button class="closeBtn" id="closeButton">
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path d="M18 6L6 18"></path>
-                        <path d="M6 6l12 12"></path>
-                      </svg>
-                    </button> -->
                     <div class="info-box">
                       <div class="textContent">
                         <img class="imgLogo" src="static/images/FORREAL.png" alt="FOR REAL" />
@@ -120,54 +112,145 @@
                       <div class="cardAnimation">
                         <!-- First row of cards -->
                         <div class="card-row">
-                          <div class="card1">
-                            <img src="static/images/bonafide card 11.png" />
-                          </div>
-                          <div class="card1">
-                            <img src="static/images/bonafide card 11.png" />
-                          </div>
-                          <div class="card1">
-                            <img src="static/images/spoof card 12.png" />
-                          </div>
-                          <div class="card1">
-                            <img src="static/images/spoof card 12.png" />
-                          </div>
-                          <div class="card1">
-                            <img src="static/images/bonafide card 11.png" />
-                          </div>
+                            <div class="card1" onclick="showContainerMI()">
+                                <img src="static/images/bonafide card 11.png" />
+                            </div>
+                            <div class="card1" onclick="showContainerMI()">
+                                <img src="static/images/bonafide card 11.png" />
+                            </div>
+                            <div class="card1" onclick="showContainerMI()">
+                                <img src="static/images/spoof card 12.png" />
+                            </div>
+                            <div class="card1" onclick="showContainerMI()">
+                                <img src="static/images/spoof card 12.png" />
+                            </div>
+                            <div class="card1" onclick="showContainerMI()">
+                                <img src="static/images/bonafide card 11.png" />
+                            </div>
                         </div>
                         <!-- Second row of cards (if more than 5) -->
                         <div class="card-row">
-                          <div class="card1">
-                            <img src="static/images/spoof card 12.png" />
-                          </div>
-                          <div class="card1">
-                            <img src="static/images/bonafide card 11.png" />
-                          </div>
-                          <div class="card1">
-                            <img src="static/images/bonafide card 11.png" />
-                          </div>
-                          <div class="card1">
-                            <img src="static/images/spoof card 12.png" />
-                          </div>
-                          <div class="card1">
-                            <img src="static/images/bonafide card 11.png" />
-                          </div>
+                            <div class="card1" onclick="showContainerMI()">
+                                <img src="static/images/bonafide card 11.png" />
+                            </div>
+                            <div class="card1" onclick="showContainerMI()">
+                                <img src="static/images/bonafide card 11.png" />
+                            </div>
+                            <div class="card1" onclick="showContainerMI()">
+                                <img src="static/images/spoof card 12.png" />
+                            </div>
+                            <div class="card1" onclick="showContainerMI()">
+                                <img src="static/images/spoof card 12.png" />
+                            </div>
+                            <div class="card1" onclick="showContainerMI()">
+                                <img src="static/images/bonafide card 11.png" />
+                            </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  
-                <div class="viewInfo">
+                    <div class="buttonSpacing">
+                      <div class="homeBtn" onclick="location.reload()">Home</div>
+                      <div class="summaryBtn">Summary</div>
+                    </div>
+                    
+                </div>
+
+                <div class="containerSummary" style="display: none;">
+                    <img src="static/images/CloseBtn.png" class="sumClsBtn" />
+                    <div class="SpredictContainer">
+                        <div class="sumCard" style="background-image: url(static/images/SpoofSummary.png); background-size: cover; background-repeat: no-repeat;">
+                            <p class="sumFileN">Filename.mp3</p>
+                            <p class="sumPrediction">Spoof</p>
+                        </div>
+                        <div class="sumCard" style="background-image: url(static/images/BonaSummary.png); background-size: cover; background-repeat: no-repeat;">
+                            <p>Filename.mp3</p>
+                            <p>Bonafide</p>
+                        </div>
+                        <div class="sumCard" style="background-image: url(static/images/SpoofSummary.png); background-size: cover; background-repeat: no-repeat;">
+                            <p>Filename.mp3</p>
+                            <p>Spoof</p>
+                        </div>
+                        <div class="sumCard" style="background-image: url(static/images/BonaSummary.png); background-size: cover; background-repeat: no-repeat;">
+                            <p>Filename.mp3</p>
+                            <p>Bonafide</p>
+                        </div>
+                        <div class="sumCard" style="background-image: url(static/images/SpoofSummary.png); background-size: cover; background-repeat: no-repeat;">
+                            <p>Filename.mp3</p>
+                            <p>Spoof</p>
+                        </div>
+                        <div class="sumCard" style="background-image: url(static/images/BonaSummary.png); background-size: cover; background-repeat: no-repeat;">
+                            <p>Filename.mp3</p>
+                            <p>Bonafide</p>
+                        </div>
+                        <div class="sumCard" style="background-image: url(static/images/SpoofSummary.png); background-size: cover; background-repeat: no-repeat;">
+                            <p>Filename.mp3</p>
+                            <p>Spoof</p>
+                        </div>
+
+                        </div>
+                    <button class="arrwBtn3" id="toggleButton3">
+                        <img src="static/images/arrwd.png" alt="Toggle Arrow" />
+                      </button>
+                </div>
+
+    
+                <div class="viewInfo" style="display: block;">
                     <a class="arrow arrow-right" title="Model Information"></a>
                 </div>
-                <div id="transition-overlay"></div>
+                <div class="containerMI" id="containerMI">
+                    <img src="static/images/CloseBtn.png" class="closeMI" />
+                    <img src="static/images/B_info.png" class="changeMIbg" />
+                    <div class="MItextPosition">
+                      <div class="MItext1">
+                        <h1 class="MIfilename">Filename.mp3</h1>
+                        <div class="MIcontent1">
+                          <h2>Prediction</h2>
+                          <h3>Bonafide</h3>
+                          <h2>Probability</h2>
+                          <h3>0.10</h3>
+                          <h2>Model Type</h2>
+                          <h3>Hybrid</h3>
+                        </div>
+                        <div class="MIcontent2 hidden">
+                          <h4>
+                            A prediction of “Bonafide” means that this audio is more likely to
+                            be genuine. The class is determined by a
+                            <span class="clickable-threshold">custom threshold</span>.
+                          </h4>
+              
+                          <h4>
+                            Probability pertains to the chance that the audio is deepfake.
+                          </h4>
+                          <h4>“Hybrid Model” uses Handcrafted and WavLM Features.</h4>
+                        </div>
+                      </div>
+                      <button class="arrwBtn2" id="toggleButton2">
+                        <img src="static/images/arrwd.png" alt="Toggle Arrow" />
+                      </button>
+                    </div>
+                    <div class="CustomThreshold" style="display: none;">
+                      <img src="static/images/ThresHybrid.png" />
+                    </div>
+                    
+                  </div>
             </div>
         </div>
+        <div class="blur-background"></div>
     </body>
     <script>
         let uploadedFiles = new Set(); // Keep track of uploaded files
 
+        function updateViewInfoVisibility() {
+    const containerC = document.getElementById('animatedContainerC');
+    const viewInfo = document.querySelector('.viewInfo');
+    
+    if (containerC.style.display === 'block') {
+        viewInfo.style.display = 'none';
+    } else {
+        viewInfo.style.display = 'block';
+    }
+}
+        
 function updateLogoVisibility() {
     const logo = document.getElementById('animatedContainerL');
     const container = document.getElementById('animatedContainer');
@@ -359,6 +442,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show card container
         cardContainer.style.display = 'block';
         
+        // Update viewInfo visibility
+        updateViewInfoVisibility();
+        
         // Trigger card animation
         setTimeout(() => {
             document.querySelector(".cardSpacing").classList.add("show-cards");
@@ -368,43 +454,293 @@ document.addEventListener('DOMContentLoaded', function() {
         updateLogoVisibility();
     });
 
-    // Initial card animation setup
-    setTimeout(() => {
-        document.querySelector(".cardSpacing").classList.add("show-cards");
-    }, 100);
+    // Update the reload functionality to handle viewInfo visibility
+    document.querySelector('.homeBtn').addEventListener('click', function() {
+        // After reload, containerC will be hidden, so viewInfo should be visible
+        const viewInfo = document.querySelector('.viewInfo');
+        viewInfo.style.display = 'block';
+    });
 });
 
-// Container Switching for info button
+// Update Container Switching for info button
 document.querySelector('.viewInfo').addEventListener('click', function() {
     const containers = {
         upload: document.getElementById('animatedContainer'),
         predict: document.getElementById('animatedContainerP'),
         analyze: document.getElementById('animatedContainerA'),
-        info: document.getElementById('animatedContainerI')
+        info: document.getElementById('animatedContainerI'),
+        custom: document.getElementById('animatedContainerC')
     };
-    
+
     if (containers.info.style.display === 'block') {
+        // Hide info container
         containers.info.style.display = 'none';
         
+        // Check if we have files uploaded
         if (uploadedFiles.size > 0) {
             containers.predict.style.display = 'block';
             containers.analyze.style.display = 'block';
             containers.upload.style.display = 'none';
+            containers.custom.style.display = 'none';
         } else {
+            // If no files, show the upload container
             containers.upload.style.display = 'block';
             containers.predict.style.display = 'none';
             containers.analyze.style.display = 'none';
+            containers.custom.style.display = 'none';
         }
     } else {
+        // Store the current state before showing info
+        const currentState = {
+            hasUploadedFiles: uploadedFiles.size > 0,
+            uploadVisible: containers.upload.style.display === 'block',
+            predictVisible: containers.predict.style.display === 'block',
+            analyzeVisible: containers.analyze.style.display === 'block',
+            customVisible: containers.custom.style.display === 'block'
+        };
+        
+        // Store the state on the element itself
+        this.lastState = currentState;
+
+        // Hide all containers
         Object.values(containers).forEach(container => {
             if (container) container.style.display = 'none';
         });
-        
+
+        // Show info container
         containers.info.style.display = 'block';
     }
+
+    // Update viewInfo visibility
+    updateViewInfoVisibility();
     
     // Update logo visibility
     updateLogoVisibility();
 });
+function showContainerMI() {
+            const containerMI = document.getElementById('containerMI');
+            const containerC = document.getElementById('animatedContainerC');
+
+            containerMI.style.display = 'block';
+            containerC.style.display = 'block';
+        }
+        const MIcontent1 = document.querySelector(".MIcontent1");
+        const MIcontent2 = document.querySelector(".MIcontent2");
+        const toggleButton = document.getElementById("toggleButton2");
+        const clickableThreshold = document.querySelector(".clickable-threshold");
+        const customThreshold = document.querySelector(".CustomThreshold");
+
+    // Toggle for the original content
+    toggleButton.addEventListener("click", () => {
+      MIcontent1.classList.toggle("hidden");
+      MIcontent2.classList.toggle("hidden");
+    });
+
+    // Toggle for the threshold display
+   // Initially set the display to "none" in JavaScript
+customThreshold.style.display = "none";
+
+clickableThreshold.addEventListener("click", () => {
+  // Check the display property and toggle it
+  if (customThreshold.style.display === "none") {
+    customThreshold.style.display = "block";
+  } else {
+    customThreshold.style.display = "none";
+  }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleButton = document.getElementById('toggleButton3');
+    const container = document.querySelector('.SpredictContainer');
+    const scrollAmount = 100; // Adjust scroll amount as needed
+    let isScrollingDown = true;
+
+    // Function to check if scrolled to bottom
+    function isScrolledToBottom() {
+        return container.scrollHeight - container.clientHeight <= container.scrollTop + 1;
+    }
+
+    // Function to check if scrolled to top
+    function isScrolledToTop() {
+        return container.scrollTop === 0;
+    }
+
+    toggleButton.addEventListener('click', function() {
+        if (isScrollingDown) {
+            // Scroll down
+            container.scrollBy({
+                top: scrollAmount,
+                behavior: 'smooth'
+            });
+
+            // If reached bottom, rotate arrow and change direction
+            if (isScrolledToBottom()) {
+                toggleButton.style.transform = 'rotate(180deg)';
+                isScrollingDown = false;
+            }
+        } else {
+            // Scroll up
+            container.scrollBy({
+                top: -scrollAmount,
+                behavior: 'smooth'
+            });
+
+            // If reached top, reset arrow rotation and change direction
+            if (isScrolledToTop()) {
+                toggleButton.style.transform = 'rotate(0deg)';
+                isScrollingDown = true;
+            }
+        }
+    });
+
+    // Add transition for smooth rotation
+    toggleButton.style.transition = 'transform 0.3s ease';
+});
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleButton = document.getElementById('toggleButton4');
+    const container = document.querySelector('.audio-list');
+    const scrollAmount = 100; // Adjust scroll amount as needed
+    let isScrollingDown = true;
+
+    // Function to check if scrolled to bottom
+    function isScrolledToBottom() {
+        return container.scrollHeight - container.clientHeight <= container.scrollTop + 1;
+    }
+
+    // Function to check if scrolled to top
+    function isScrolledToTop() {
+        return container.scrollTop === 0;
+    }
+
+    toggleButton.addEventListener('click', function() {
+        if (isScrollingDown) {
+            // Scroll down
+            container.scrollBy({
+                top: scrollAmount,
+                behavior: 'smooth'
+            });
+
+            // If reached bottom, rotate arrow and change direction
+            if (isScrolledToBottom()) {
+                toggleButton.style.transform = 'rotate(180deg)';
+                isScrollingDown = false;
+            }
+        } else {
+            // Scroll up
+            container.scrollBy({
+                top: -scrollAmount,
+                behavior: 'smooth'
+            });
+
+            // If reached top, reset arrow rotation and change direction
+            if (isScrolledToTop()) {
+                toggleButton.style.transform = 'rotate(0deg)';
+                isScrollingDown = true;
+            }
+        }
+    });
+
+    // Add transition for smooth rotation
+    toggleButton.style.transition = 'transform 0.3s ease';
+});
+
+
+//SUMARRY POP UP PART
+document.addEventListener('DOMContentLoaded', function() {
+    // Existing code remains the same...
+
+    // Add event listener for summary button
+    const summaryBtn = document.querySelector('.summaryBtn');
+    const sumClsBtn = document.querySelector('.sumClsBtn');
+    const containerSummary = document.querySelector('.containerSummary');
+
+    if (summaryBtn) {
+        summaryBtn.addEventListener('click', function() {
+            if (containerSummary) {
+                containerSummary.style.display = 'block';
+            }
+        });
+    }
+
+    if (sumClsBtn) {
+        sumClsBtn.addEventListener('click', function() {
+            if (containerSummary) {
+                containerSummary.style.display = 'none';
+            }
+        });
+    }
+});
+document.querySelector('.closeMI').addEventListener('click', function() {
+    const containerMI = document.getElementById('containerMI');
+    containerMI.style.display = 'none';
+});
+
+
+//BLUR EFFECT
+// Add this function to manage blur effect
+function toggleBlurBackground(show) {
+                const blurBackground = document.querySelector('.blur-background');
+                blurBackground.style.display = show ? 'block' : 'none';
+            }
+
+            // Update the existing showContainerMI function
+            function showContainerMI() {
+                const containerMI = document.getElementById('containerMI');
+                const containerC = document.getElementById('animatedContainerC');
+
+                containerMI.style.display = 'block';
+                containerC.style.display = 'block';
+                toggleBlurBackground(true);
+            }
+
+            // Update the MI close button event listener
+            document.querySelector('.closeMI').addEventListener('click', function() {
+                const containerMI = document.getElementById('containerMI');
+                containerMI.style.display = 'none';
+                toggleBlurBackground(false);
+            });
+
+            // Update the summary button click handlers
+            document.addEventListener('DOMContentLoaded', function() {
+                const summaryBtn = document.querySelector('.summaryBtn');
+                const sumClsBtn = document.querySelector('.sumClsBtn');
+                const containerSummary = document.querySelector('.containerSummary');
+
+                if (summaryBtn) {
+                    summaryBtn.addEventListener('click', function() {
+                        if (containerSummary) {
+                            containerSummary.style.display = 'block';
+                            toggleBlurBackground(true);
+                        }
+                    });
+                }
+
+                if (sumClsBtn) {
+                    sumClsBtn.addEventListener('click', function() {
+                        if (containerSummary) {
+                            containerSummary.style.display = 'none';
+                            toggleBlurBackground(false);
+                        }
+                    });
+                }
+
+                // Add click handler to close on background click (optional)
+                document.querySelector('.blur-background').addEventListener('click', function() {
+                    const containerMI = document.getElementById('containerMI');
+                    const containerSummary = document.querySelector('.containerSummary');
+                    
+                    if (containerMI.style.display === 'block') {
+                        containerMI.style.display = 'none';
+                    }
+                    if (containerSummary.style.display === 'block') {
+                        containerSummary.style.display = 'none';
+                    }
+                    toggleBlurBackground(false);
+                });
+            });
+
+            
     </script>
 </html>
