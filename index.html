@@ -50,7 +50,7 @@
                     </div>
                 </div>
         
-                
+                <!-- AUDIO LIST PART (can play and delete audio) -->
                 <div class="containerP" id="animatedContainerP" style="display: none;">
                 <div class="dot1"></div>
                     <div class="light-beam"></div>
@@ -70,6 +70,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- Analysis Part beside the Audio list (when ContainerP is showing kasama ren to sa makikita) -->
                 <div class="containerA" id="animatedContainerA" style="display: none;">
                     <div class="PredictionText">
                         <div class="PredictBox1">
@@ -83,6 +84,8 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- MORE INFO PART -->
                 <div class="containerI" id="animatedContainerI" style="display: none;">
                     <div class="info-box">
                       <div class="textContent">
@@ -105,6 +108,8 @@
                       </div>
                     </div>
                 </div>
+
+                <!-- SHOW CARD PART -->
                 <div class="containerC" id="animatedContainerC" style="display: none;">
                     <div class="preCardAnimation">
                       <img class="deck" src="static/images/deck.png" />
@@ -112,12 +117,15 @@
                     <div class="cardSpacing">
                       <div class="cardAnimation">
                         <!-- First row of cards -->
+                         <!-- Dito sa part nato dead center talaga sya kahit ilang card kasoo-->
+                          <!-- Pag lumagpas sa 5 yung card need ilagay sa kabilang row para maayos tignan-->
                         <div class="card-row">
+                            <!-- PAPALITAN LANG YUNG UMAGE DEPENDE KUNG BONAFIDE OR SPOOF -->
                             <div class="card1" onclick="showContainerMI()">
                                 <img src="static/images/bonafide card 11.png" />
                             </div>
                             <div class="card1" onclick="showContainerMI()">
-                                <img src="static/images/bonafide card 11.png" />
+                                <img src="static/images/bonafide card 11.png" /> 
                             </div>
                             <div class="card1" onclick="showContainerMI()">
                                 <img src="static/images/spoof card 12.png" />
@@ -153,12 +161,13 @@
                       <div class="homeBtn" onclick="location.reload()">Home</div>
                       <div class="summaryBtn">Summary</div>
                     </div>
-                    
                 </div>
 
+                <!-- SUMMARY POP UP -->
                 <div class="containerSummary" style="display: none;">
                     <img src="static/images/CloseBtn.png" class="sumClsBtn" />
                     <div class="SpredictContainer">
+                        <!-- DITO DIN PAPALITAN YUNG URL NG IMAGE DEPENDE SA PREDICTION -->
                         <div class="sumCard" style="background-image: url(static/images/SpoofSummary.png); background-size: cover; background-repeat: no-repeat;">
                             <p class="sumFileN">Filename.mp3</p>
                             <p class="sumPrediction">Spoof</p>
@@ -194,15 +203,18 @@
                       </button>
                 </div>
 
-    
+                <!-- VIEW INFO (ARROW RIGHT in the left side of the screen) -->
                 <div class="viewInfo" style="display: block;">
                     <a class="arrow arrow-right" title="Model Information"></a>
                 </div>
+
+                <!-- More Info when the card is click part -->
                 <div class="containerMI" id="containerMI">
                     <img src="static/images/CloseBtn.png" class="closeMI" />
                     <img src="static/images/B_info.png" class="changeMIbg" />
                     <div class="MItextPosition">
                       <div class="MItext1">
+                        <!-- PAPALITAN YUNG MGA INFO DEPENDE SA PREDICTION -->
                         <h1 class="MIfilename">Filename.mp3</h1>
                         <div class="MIcontent1">
                           <h2>Prediction</h2>
@@ -213,12 +225,13 @@
                           <h3>Hybrid</h3>
                         </div>
                         <div class="MIcontent2 hidden">
+                            <!-- MAPAPALITAN YUNG TEXT CONTENT DEPENDE SA PREDICTION AT SA MODEL NA GAMIT -->
                           <h4>
                             A prediction of “Bonafide” means that this audio is more likely to
                             be genuine. The class is determined by a
                             <span class="clickable-threshold">custom threshold</span>.
                           </h4>
-              
+                          
                           <h4>
                             Probability pertains to the chance that the audio is deepfake.
                           </h4>
@@ -231,6 +244,8 @@
                     </div>
                     <div class="CustomThreshold" style="display: none;">
                       <img src="static/images/ThresHybrid.png" />
+                      <!-- <img src="static/images/thresHC.png" /> -->
+                       <!-- Pag HC yung model ito yung pop up na threshold -->
                     </div>
                     
                 </div>
@@ -276,6 +291,8 @@ function updateLogoVisibility() {
         logo.style.display = 'block';
     }
 }
+
+// For audio list to display and able to delete and play
 
 function createAudioElement(file) {
     const audioContainer = document.createElement('div');
@@ -409,7 +426,9 @@ uploadBox.addEventListener('drop', (e) => {
     handleFileUpload(e.dataTransfer.files);
 });
 
-// Event listener for the yes button and card animation
+
+
+// MORE INFO PART (when click the button it switch text)
 document.addEventListener('DOMContentLoaded', function() {
     // Info text switching functionality
     const text1 = document.getElementById("text1");
@@ -440,7 +459,7 @@ document.addEventListener('DOMContentLoaded', function() {
         showingText1 = !showingText1;
     });
 
-    // Yes button click handler
+    // Ito yung part na pag na click nayung YES BUTTON sa analyze i hide nya na other container and show cards
     const yesButton = document.querySelector('.PredictBox2');
     yesButton.addEventListener('click', function() {
         // Hide current containers
@@ -477,7 +496,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Update Container Switching for info button
+// CONTAINER SWITCHING (ito yung nag hahanda ng pag papalit palit ng containers)
 document.querySelector('.viewInfo').addEventListener('click', function() {
     const containers = {
         upload: document.getElementById('animatedContainer'),
@@ -534,7 +553,7 @@ document.querySelector('.viewInfo').addEventListener('click', function() {
 });
 
 
-
+//ITo yung sa card MORE INFO part yung mga prediction shits
 
 function showContainerMI() {
             const containerMI = document.getElementById('containerMI');
@@ -568,6 +587,7 @@ clickableThreshold.addEventListener("click", () => {
   }
 });
 
+//SCROLL SCRIPT NUNG SA SUMMARY PART
 document.addEventListener('DOMContentLoaded', function() {
     const toggleButton = document.getElementById('toggleButton3');
     const container = document.querySelector('.SpredictContainer');
@@ -616,7 +636,7 @@ document.addEventListener('DOMContentLoaded', function() {
     toggleButton.style.transition = 'transform 0.3s ease';
 });
 
-
+//SCROLL SCRIPT NUNG SA AUDIO LIST
 document.addEventListener('DOMContentLoaded', function() {
     const toggleButton = document.getElementById('toggleButton4');
     const container = document.querySelector('.audio-list');
