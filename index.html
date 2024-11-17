@@ -75,13 +75,13 @@
                 <div class="containerA" id="animatedContainerA" style="display: none;">
                     <div class="PredictionText">
                         <div class="PredictBox1">
-                            <img src="static/images/analyze.png">
+                            <img id="img1" src="static/images/analyze.png">
                         </div>
                         <div class="PredictBox2">
-                            <img src="static/images/yes.png">
+                            <img id="img2" src="static/images/yes.png">
                         </div>
                         <div class="PredictBox3" onclick="location.reload()">
-                            <img src="static/images/No.png">
+                            <img id="img3" src="static/images/No.png">
                         </div>
                     </div>
                 </div>
@@ -832,6 +832,29 @@ function toggleBlurBackground(show) {
     // Call the function on page load and window resize
     window.addEventListener('load', updateImageSource);
     window.addEventListener('resize', updateImageSource);
+
+    function updateImagesForSpecificDimensions() {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        // Update images if screen dimensions match 390x844
+        if (width === 390 && height === 844) {
+            document.getElementById("img1").src = "static/images/mobileanalyze.png";
+            document.getElementById("img2").src = "static/images/mobileyes.png";
+            document.getElementById("img3").src = "static/images/mobileNo.png";
+        } else {
+            // Restore default images for other screen sizes
+            document.getElementById("img1").src = "static/images/analyze.png";
+            document.getElementById("img2").src = "static/images/yes.png";
+            document.getElementById("img3").src = "static/images/No.png";
+        }
+    }
+
+    // Run the function on page load
+    updateImagesForSpecificDimensions();
+
+    // Add an event listener to handle window resizing dynamically
+    window.addEventListener("resize", updateImagesForSpecificDimensions);
             
     </script>
 </html>
