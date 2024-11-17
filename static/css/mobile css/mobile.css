@@ -1,0 +1,123 @@
+
+
+@media only screen and (min-width: 390px) and (max-width: 844px) {
+
+    
+
+    .background-container {
+        background-image: url(/static/images/mobileBg.png);
+        background-position: top;
+    }
+
+    .upload-box {
+        position: absolute;
+        background-image: url(/static/images/mobileswing.png);
+        background-size: auto;
+        background-repeat: no-repeat;
+        top: 50%;
+        left: 50%;
+        transform: translate(-65%, -50%);
+    }
+
+    .FRBigLogo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 10px;
+        margin-top: 30px;
+        margin-right: 90px;
+    }
+    
+    .FRBigLogo img {
+        width: 14vh; /* Maintain the height relative to viewport height */
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    .button-image {
+        position: absolute;
+        width: 200px;
+        height: 250px;
+        margin-top: -530px;
+        margin-left: -222px;
+    }
+    
+    .toggle-container {
+        height: 35px;
+        width: 90px;
+    }
+
+    .toggle-circle {
+        width: 30px;
+        height: 30px;
+    }
+
+    .toggle-text {
+        margin-left: 43px;
+        font-size: 12px;
+    }
+
+    .toggle-container.active2 .toggle-text {
+        margin-left: 20px;
+        font-size: 14px;
+    }
+
+    .arrow {
+        padding: 0.8rem; /* Reduced size for mobile */
+        border-width: 0 0 1.5rem 1.5rem; /* Adjust thickness */
+        margin-right: -10px; /* Adjust spacing */
+    }
+
+    .info-box {
+        background-image: url(/static/images/infomobBg1.png); /* New background image for mobile */
+        width: 390px;
+        height: 409px;
+        margin-left: -20px;
+        margin-top: 350px;
+    }
+
+
+    .textContent p.active {
+        font-size: 17px;
+        width: 280px;
+    }
+
+    .arrwBtn img { /* If your button has an image inside */
+        width: 30px;  /* Resize the icon/image */
+        height: 12px; /* Resize the icon/image */
+    }
+
+    .imgLogo {
+        display: none;
+    }
+
+    .arrow {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        /* Add your styling for the arrow here */
+    }
+
+    .arrow-text {
+        font-size: 18px;
+        margin-left: 10px;
+    }
+
+    /* Hide the arrow image when the text is displayed */
+    .arrow .arrow-icon {
+        display: block;
+    }
+
+    .arrow .arrow-text {
+        display: none;
+    }
+
+    .arrow-back .arrow-text {
+        display: block; /* Show "Back" text */
+    }
+
+    .arrow-back .arrow-icon {
+        display: none; /* Hide the arrow icon */
+    }
+
+
+}

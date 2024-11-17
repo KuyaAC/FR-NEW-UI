@@ -277,7 +277,7 @@ html {
     position: relative;
     transform-origin: top;
     animation:
-        drop 2s ease forwards,
+        drop 2s ease forwards;
 
     animation-delay: 0s, 2s; /* Start swing after 0.8s (duration of drop) */
 }
@@ -334,7 +334,6 @@ html {
     align-items: center; /* Centers .info-box vertically */
     width: 130vh; /* Adjust width as needed */
     height: 85vh;
-
 }
 
 .info-box {
@@ -366,26 +365,38 @@ html {
     left: 50%;
 }
 
+@font-face {
+    font-family: 'Fontsona4Golden'; /* The name you will use for the font */
+    src: url('static/fonts/Fontsona4Golden.ttf') format('truetype'); /* Path to the font file */
+}
+
 .textContent p {
     margin: 20px 0;
     transition: opacity 0.5s ease;
     opacity: 0;
     display: none;
     font-size: 30px;
+    font-family: 'Fontsona4Golden'; /* Apply the local font */
 }
 
 .textContent p.active {
     margin: 20px 0;
     opacity: 1;
     display: block;
+    font-family: 'Fontsona4Golden'; /* Apply the local font */
 }
 
 .arrwBtn {
-    margin-top: auto; /* Pushes the button to the bottom */
+    margin-top: auto;
     background: none;
     border: none;
     cursor: pointer;
     padding: 10px;
+    transition: transform 0.3s ease-in-out; /* Smooth scaling effect */
+}
+
+.arrwBtn:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
 }
 
  .active {
@@ -519,10 +530,23 @@ html {
     animation: dealCard 0.8s ease forwards;
 }
 
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
 .card1 img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    transition: transform 0.2s ease-in-out; /* Smooth transition */
+}
+
+.card1 img:hover {
+    animation: shake 0.5s ease-in-out; /* Shake effect */
 }
 
 @keyframes dealCard {
@@ -596,7 +620,7 @@ html {
     --font-size: 20px;
     --font-color: #000000;
     --font-color-summary: #ffffff;
-    --font-family: "Germania one"; /* Font family */
+    --font-family: "Germania One"; /* Font family */
     --button-gap: 20px; /* Adjustable gap */
     --fade-in-duration: 2s; /* Animation duration */
     --fade-in-delay: 5.2s; /* Animation delay */
@@ -619,9 +643,14 @@ html {
     font-family: var(--font-family);
     font-weight: bold;
     cursor: pointer;
-    opacity: 0; /* Start invisible */
+    opacity: 0;
     animation: fadeIn var(--fade-in-duration) ease-in-out forwards;
-  }
+    transition: transform 0.3s ease-in-out; /* Smooth scaling effect */
+}
+
+.homeBtn:hover, .summaryBtn:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
   
   .homeBtn {
     margin-right: 20px;
@@ -672,32 +701,46 @@ html {
         /* transform: scale(0.8); */
 }
 
-.SpredictContainer{
-        align-items: center;
-        justify-content: center;
-        height: 490px;
-        width: 450px;
-        margin-left: 29px;
-        margin-top: 35px;
-        overflow-y: auto;
-        scroll-behavior: smooth;
+.SpredictContainer {
+    align-items: center;
+    justify-content: center;
+    height: 490px;
+    width: 450px;
+    margin-left: 29px;
+    margin-top: 35px;
+    overflow-y: auto; /* Enable vertical scrolling */
+    scroll-behavior: smooth; /* Smooth scrolling for better UX */
+
+    /* Hide scrollbar for most browsers */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
 }
-.sumCard{
+
+/* Hide scrollbar for Webkit-based browsers (Chrome, Safari, Edge) */
+.SpredictContainer::-webkit-scrollbar {
+    display: none;
+}
+.sumCard {
     margin-left: -8px;
     width: 460px;
     height: 110px;
-    transform: scale(0.8);
+    transform: scale(0.8); /* Initial smaller scale */
     margin-bottom: 10px;
     border: #3F3F3F solid;
     border-radius: 14px;
     align-items: center;
     justify-content: center;
+    transition: transform 0.3s ease-in-out; /* Smooth scaling effect */
+}
+
+.sumCard:hover {
+    transform: scale(0.9); /* Slightly larger on hover */
 }
 .sumCard p{
     display: flex;
     align-items: center;
     padding-left: 30px;
-    font-family: "Germania one";
+    font-family: "Germania One";
     font-size: 22px;
 }
 .sumClsBtn{
@@ -739,7 +782,7 @@ html {
     top: 33%; /* Adjust as needed */
     left: 200%;
     transform: translate(-50%, -50%);
-    font-family: "Germania One";
+    font-family: "Germania one";
     font-size: 42px;
     
 }
@@ -752,7 +795,6 @@ html {
     left: 157%;
 }
 .MIcontent1 h3{
-    font-family: "fontsona4";
     font-size: 20px;
 }
 .MIcontent1 h2{
@@ -769,21 +811,33 @@ html {
     position: relative;
     left: 157%;
 }
+
+@font-face {
+    font-family: 'Fontsona4Golden'; /* The name you will use for the font */
+    src: url('static/fonts/Fontsona4Golden.ttf') format('truetype'); /* Path to the font file */
+}
+
 .MIcontent2 h4{
-    font-family: "fontsona4";
     font-size: 18px;
+    margin-top: 40px;
 }
 
 .arrwBtn2 {
     position: absolute;
-    bottom: -13%; /* Adjust as needed */
+    bottom: -13%;
     left: 214%;
     transform: translateX(-50%);
     background: none;
     border: none;
     cursor: pointer;
-    padding-left: 0; /* Removed padding to center */
+    padding-left: 0;
+    transition: transform 0.3s ease-in-out; /* Smooth scaling effect */
 }
+
+.arrwBtn2:hover {
+    transform: translateX(-50%) scale(1.1); /* Slightly enlarge on hover */
+}
+
 .arrwBtn3 {
     transition: transform 0.3s ease;
     cursor: pointer;
@@ -984,6 +1038,11 @@ html {
     right: 0;
     transform: translateY(-50%) rotate(225deg);
 }
+
+.arrow-right:hover {
+    transform: translateY(-50%) rotate(225deg) scale(1.2); /* Scale the arrow when hovered */
+}
+
 .arrow-left {
     left: 0;
     transform: translateY(-50%) rotate(45deg);
@@ -1015,16 +1074,19 @@ html {
     align-items: flex-start; /* Align items to the left */
 }
 
+
 /* File name and duration styling */
 .file-name {
     color: white;
     font-size: 0.875rem;
     margin-bottom: 0.25rem;
+    font-family: 'Germania One';
 }
 
 .duration {
-    color: rgba(255, 255, 255, 0.6);
+    color: #B9B9B9;
     font-size: 0.75rem;
+    font-family: 'Germania One';
 }
 
 /* Audio controls */
@@ -1051,17 +1113,25 @@ html {
 
 .play-btn:hover,
 .delete-btn:hover {
-    background-color: #FF0000;
+    background-color: #950002;
 }
 
 /* Audio list container */
 #audio-list {
     height: 48vh;
     width: 440px;
-    overflow-y: auto;
+    overflow-y: auto; /* Enable vertical scrolling */
     padding: 1rem;
     padding-right: 0rem;
-  
+
+    /* Hide scrollbar for most browsers */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+/* Hide scrollbar for Webkit-based browsers (Chrome, Safari, Edge) */
+#audio-list::-webkit-scrollbar {
+    display: none;
 }
 
 /* SWITCH MODEL PART */
@@ -1081,18 +1151,27 @@ html {
     align-items: flex-end; /* Align items vertically to the bottom */
     justify-content: flex-end; /* Align items horizontally to the right */
 }
+
+.PredictBox2:hover img {
+    transform: scale(1.1); /* Scale the image by 1.2 when hovered */
+}
+
 .PredictBox3{
     display: flex; /* Enable flexbox */
     align-items: flex-end; /* Align items vertically to the bottom */
     justify-content: flex-end; /* Align items horizontally to the right */
 }
 
+.PredictBox3:hover img {
+    transform: scale(1.1); /* Scale the image by 1.2 when hovered */
+}
+
 /* SWITCH MODEL */
 .toggle-container {
-    background: #2a2a2a;
+    background: #3F3F3F;
     border-radius: 30px;
     padding: 5px;
-    width: 170px;
+    width: 125px;
     height: 50px;
     display: flex;
     align-items: center;
@@ -1103,7 +1182,11 @@ html {
     transition: all 0.3s ease;
     z-index: 1000;
     transform: scale(0.8);
-  }
+}
+
+#toggleButton4 {
+    
+}
 
   .toggle-container.active2 {
     background: #ffffff;
@@ -1134,30 +1217,31 @@ html {
 
   .toggle-text {
     color: #fff;
-    margin-left: 90px;
+    margin-left: 60px;
     font-size: 16px;
     user-select: none;
     transition: all 0.3s ease;
     font-family: monospace;
     font-weight: bold;
-  }
+}
 
   .toggle-container.active2 .toggle-text {
-    color: #2a2a2a;
-    margin-left: 10px;
-  }
+    color: #3F3F3F;
+    margin-left: 40px;
+    font-size: 20px;
+}
 
   /* Fixed SVG styles */
   .network-icon {
     fill: none;
-    stroke: #333;
+    stroke: #3F3F3F;
     stroke-width: 2;
     transition: all 0.3s ease;
   }
 
   /* Updated icon colors for both states */
   .toggle-container .network-icon {
-    stroke: #333;
+    stroke: transparent;
   }
 
   .toggle-container.active2 .network-icon {
@@ -1168,11 +1252,6 @@ html {
     stroke: #fff; /* Icon color in the circle when active */
   }
 
-  /* Hover effect */
-  .toggle-container:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  }
 
 @-webkit-keyframes delay {
     0%,

@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="static/css/styles.css" />
         <link href="https://fonts.cdnfonts.com/css/death-font" rel="stylesheet">
+        <link rel="stylesheet" href="static/css/mobile css/mobile.css" />
         <link href="https://db.onlinewebfonts.com/c/a3cd6762eede2ec51f8999878ddc0b1e?family=CCSoliloquous+W00+Regular+V1" rel="stylesheet">
         <link href="https://db.onlinewebfonts.com/c/3d73cd0279f4c3db9b4f7db0305164f6?family=RansomNote" rel="stylesheet">
         <link href="https://fonts.cdnfonts.com/css/death-note-font" rel="stylesheet">
@@ -291,6 +292,16 @@
 }
         
 function updateLogoVisibility() {
+    // Get the current screen width and height
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    // Check if the screen size is 390x844
+    if (width === 390 && height === 844) {
+        return; // Do nothing if screen size is 390x844
+    }
+
+    // Otherwise, proceed with the logo visibility logic
     const logo = document.getElementById('animatedContainerL');
     const container = document.getElementById('animatedContainer');
     
@@ -797,13 +808,30 @@ function toggleBlurBackground(show) {
     toggleContainer.addEventListener('click', () => {
       toggleContainer.classList.toggle('active2');
       if (toggleContainer.classList.contains('active2')) {
-        toggleText.textContent = 'HandCrafted';
+        toggleText.textContent = 'HC';
         
       } else {
         toggleText.textContent = 'Hybrid';
       
       }
     });
+
+    //palitan si upload.png ng mobileupload.png for 390x844 dimensions
+
+    function updateImageSource() {
+        const uploadButton = document.getElementById('upload-button');
+        
+        // Check screen width and height
+        if (window.innerWidth === 390 && window.innerHeight === 844) {
+            uploadButton.src = "static/images/mobileupload.png"; // Mobile-specific image
+        } else {
+            uploadButton.src = "static/images/upload.png"; // Default image
+        }
+    }
+
+    // Call the function on page load and window resize
+    window.addEventListener('load', updateImageSource);
+    window.addEventListener('resize', updateImageSource);
             
     </script>
 </html>
