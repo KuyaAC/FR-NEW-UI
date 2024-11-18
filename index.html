@@ -212,7 +212,7 @@
                 <!-- More Info when the card is click part -->
                 <div class="containerMI" id="containerMI">
                     <img src="static/images/CloseBtn.png" class="closeMI" />
-                    <img src="static/images/B_info.png" class="changeMIbg" />
+                    <img src="static/images/B_info.png" class="changeMIbg" id="cardinfo"/>
                     <div class="MItextPosition">
                       <div class="MItext1">
                         <!-- PAPALITAN YUNG MGA INFO DEPENDE SA PREDICTION -->
@@ -253,7 +253,7 @@
                       </button>
                     </div>
                     <div class="CustomThreshold" style="display: none;">
-                      <img src="static/images/ThresHybrid.png" />
+                      <img src="static/images/ThresHybrid.png" class="threshold"/>
                       <!-- <img src="static/images/thresHC.png" /> -->
                        <!-- Pag HC yung model ito yung pop up na threshold -->
                     </div>
@@ -423,6 +423,7 @@ function handleFileUpload(files) {
     
     // Update logo visibility
     updateLogoVisibility();
+
 }
 
 // Event Listeners for file upload
@@ -829,11 +830,24 @@ function toggleBlurBackground(show) {
         }
     }
 
-    // Call the function on page load and window resize
-    window.addEventListener('load', updateImageSource);
-    window.addEventListener('resize', updateImageSource);
+    function updateImageSource() {
+        const infoCard = document.getElementById('infocard');
+        
+        // Check screen width and height
+        if (window.innerWidth === 390 && window.innerHeight === 844) {
+            infoCard.src = "static/images/mobileB_info.png"; // Mobile-specific image
+        } else {
+            infoCard.src = "static/images/B_info.png"; // Default image
+        }
+    }
 
-    function updateImagesForSpecificDimensions() {
+       // Call the function on page load and window resize
+       window.addEventListener('load', updateImageSource);
+       window.addEventListener('resize', updateImageSource);
+
+       //para sa mobile analyze page
+
+       function updateImagesForSpecificDimensions() {
         const width = window.innerWidth;
         const height = window.innerHeight;
 
@@ -855,6 +869,8 @@ function toggleBlurBackground(show) {
 
     // Add an event listener to handle window resizing dynamically
     window.addEventListener("resize", updateImagesForSpecificDimensions);
+
+    
             
     </script>
 </html>

@@ -2,6 +2,15 @@
 
 @media only screen and (min-width: 390px) and (max-width: 844px) {
 
+    .FRBigLogo {
+        display: block !important; /* Force visibility */
+        position: fixed; /* Keep it on-screen while scrolling */
+        top: 10px; /* Position at the top */
+        left: -70px; /* Adjust position */
+        z-index: 1000; /* Ensure it stays on top of other elements */
+        height: auto; /* Maintain aspect ratio */
+    }
+
     .container {
         width: 370px;
         height: 1200px;
@@ -28,14 +37,6 @@
         transform: scale(1.2);
     }
 
-    .FRBigLogo {
-        position: absolute;
-        top: 0;
-        left: 0;
-        padding: 10px;
-        margin-top: 30px;
-        margin-right: 90px;
-    }
     
     .FRBigLogo img {
         width: 14vh; /* Maintain the height relative to viewport height */
@@ -145,11 +146,9 @@
         margin-right: -150px;
     }
 
-    
-
     .containerA {
         width: 390px;
-        height: 600px;
+        height: 240px;
         margin-left: -190px;
         margin-top: 430px;
     }
@@ -169,7 +168,7 @@
         align-items: center;
         justify-content: center;
         border-radius: 10px;
-        transform: scale(0.7);
+        transform: scale(0.6);
         
     }
     .containerP{
@@ -183,4 +182,145 @@
         margin-left: 6px;
     }
 
+    #audio-list {
+        height: 53vh;
+    }
+    
+    #img2:hover img {
+        transform: scale(0.5); /* Scale the image by 1.2 when hovered */
+    }
+    
+    #img3:hover img {
+        transform: scale(1.1); /* Scale the image by 1.2 when hovered */
+    }
 
+    .card1 {
+        width: 150px;
+        margin-right: -90px;
+        height: 130px;
+        opacity: 0;
+        position: relative;
+        transform-origin: center bottom;
+        animation: dealCard 0.8s ease forwards;
+    }
+
+    .card1 img {
+        width: 40%;
+        height: 100%;
+        object-fit: contain;
+        margin-left: -90px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .card-row {
+        gap: 15px;
+    }
+
+    .cardSpacing {
+        display: flex;
+        flex-direction: column;
+        gap: -20px;
+        perspective: 1000px;
+        position: relative;
+        visibility: hidden; /* Hide cards initially */
+    }
+
+    .homeBtn, .summaryBtn {
+        width: 120px;
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .changeMIbg{
+        transform: scale(0.6);
+        position: absolute;
+        margin-left: -190px;
+    }
+
+    .changeMIbg {
+        content: url("/static/images/mobileB_info.png");
+        margin-left: -55px;
+        margin-top: -30px;
+    }
+
+    .MIfilename {
+        position: absolute;
+        top: 30%; /* Adjust as needed */
+        left: 115%;
+        transform: translate(-50%, -50%);
+        font-family: "Germania one";
+        font-size: 32px;
+        
+    }
+    .MIcontent1{
+        margin-left: -201px;
+        padding-top: 240px; /*adujust contentMI */
+        width: 340px;
+        height: 300px;
+        position: relative;
+        left: 157%;
+    }
+    .MIcontent1 h3{
+        font-size: 16px;
+    }
+    .MIcontent1 h2{
+        font-family: "Spicy Rice";
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    
+    .MIcontent2{
+        margin-left: 50px;
+        padding-top: 285px; /*adujust contentMI */
+        width: 340px;
+        height: 300px;
+        position: relative;
+        left: 157%;
+    }
+
+    .closeMI{
+        position: fixed;
+        top: 20%;
+        left: 80%;
+        transform: scale(0.7);
+      }
+
+      .arrwBtn2 {
+        position: absolute;
+        bottom: -5%;
+        left: 130%;
+        transform: translateX(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding-left: 0;
+        transform: scale(0.4);
+    }
+
+    .MIcontent2{
+        margin-left: -61px;
+        padding-top: 250px; /*adujust contentMI */
+        margin-bottom: -110px;
+        width: 200px;
+        height: 400px;
+        position: relative;
+        left: 105%;
+    }
+
+    .MIcontent2 h4{
+        font-size: 15px;
+        margin-top: 20px;
+    }
+
+    .threshold {
+        margin-top: -40px;
+        margin-left: -90px;
+        transform: scale(0.6);
+    }
+
+    .containerSummary {
+        margin-left: -200px;
+        transform: scale(0.65);
+    }
+
+}
