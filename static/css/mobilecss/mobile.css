@@ -9,6 +9,7 @@
         transform-origin: top;
         animation: drop 2s ease-in-out;
         animation-delay: 0s, 2s; /* Start swing after 0.8s (duration of drop) */
+        
     }
 
     .background-container {
@@ -24,6 +25,7 @@
         margin-left: 35px;
         margin-top: 150px;
         width: 300px;
+        transform: scale(1.2);
     }
 
     .FRBigLogo {
@@ -143,9 +145,7 @@
         margin-right: -150px;
     }
 
-    #animatedContainerP {
-        width: 100px;
-    }
+    
 
     .containerA {
         width: 390px;
@@ -154,18 +154,33 @@
         margin-top: 430px;
     }
 
+    /* AUDIO LIST PART */
     .predict-box {
         position: absolute;
         width: 90%; /* Make it responsive */
-        height: auto; /* Adjust height to content */
+        height: 1200px; /* Adjust height to content */
         right: 5%; /* Adjust alignment */
-        left: auto; /* Override desktop setting */
-        bottom: 10%; /* Ensure it's visible */
-        overflow: hidden;
-        background-image: url(../images/mobileswing.png);
+        left: 8%; /* Override desktop setting */
+        top: -20%;
+        /* overflow: hidden; */
+        background-image: url(/static/images/mobileswing.png);
         background-size: cover;
         background-repeat: no-repeat;
         align-items: center;
         justify-content: center;
         border-radius: 10px;
+        transform: scale(0.7);
+        
     }
+    .containerP{
+        width: 600px;
+        height: 1200px;
+        left: -40%;
+        
+    }
+    .predict-section{
+        top: 50%;
+        margin-left: 6px;
+    }
+
+
