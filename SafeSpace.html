@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="static/css/styles.css" />
         <link href="https://fonts.cdnfonts.com/css/death-font" rel="stylesheet">
+        <link rel="stylesheet" href="static/css/mobilecss/mobile.css" />
         <link href="https://db.onlinewebfonts.com/c/a3cd6762eede2ec51f8999878ddc0b1e?family=CCSoliloquous+W00+Regular+V1" rel="stylesheet">
         <link href="https://db.onlinewebfonts.com/c/3d73cd0279f4c3db9b4f7db0305164f6?family=RansomNote" rel="stylesheet">
         <link href="https://fonts.cdnfonts.com/css/death-note-font" rel="stylesheet">
@@ -49,7 +50,8 @@
                         </div>
                     </div>
                 </div>
-                
+        
+                <!-- AUDIO LIST PART (can play and delete audio) -->
                 <div class="containerP" id="animatedContainerP" style="display: none;">
                 <div class="dot1"></div>
                     <div class="light-beam"></div>
@@ -69,19 +71,22 @@
                         </div>
                     </div>
                 </div>
+                <!-- Analysis Part beside the Audio list (when ContainerP is showing kasama ren to sa makikita) -->
                 <div class="containerA" id="animatedContainerA" style="display: none;">
                     <div class="PredictionText">
                         <div class="PredictBox1">
-                            <img src="static/images/analyze.png">
+                            <img id="img1" src="static/images/analyze.png">
                         </div>
                         <div class="PredictBox2">
-                            <img src="static/images/yes.png">
+                            <img id="img2" src="static/images/yes.png">
                         </div>
                         <div class="PredictBox3" onclick="location.reload()">
-                            <img src="static/images/No.png">
+                            <img id="img3" src="static/images/No.png">
                         </div>
                     </div>
                 </div>
+
+                <!-- MORE INFO PART -->
                 <div class="containerI" id="animatedContainerI" style="display: none;">
                     <div class="info-box">
                       <div class="textContent">
@@ -104,6 +109,8 @@
                       </div>
                     </div>
                 </div>
+
+                <!-- SHOW CARD PART -->
                 <div class="containerC" id="animatedContainerC" style="display: none;">
                     <div class="preCardAnimation">
                       <img class="deck" src="static/images/deck.png" />
@@ -111,12 +118,15 @@
                     <div class="cardSpacing">
                       <div class="cardAnimation">
                         <!-- First row of cards -->
+                         <!-- Dito sa part nato dead center talaga sya kahit ilang card kasoo-->
+                          <!-- Pag lumagpas sa 5 yung card need ilagay sa kabilang row para maayos tignan-->
                         <div class="card-row">
+                            <!-- PAPALITAN LANG YUNG UMAGE DEPENDE KUNG BONAFIDE OR SPOOF -->
                             <div class="card1" onclick="showContainerMI()">
                                 <img src="static/images/bonafide card 11.png" />
                             </div>
                             <div class="card1" onclick="showContainerMI()">
-                                <img src="static/images/bonafide card 11.png" />
+                                <img src="static/images/bonafide card 11.png" /> 
                             </div>
                             <div class="card1" onclick="showContainerMI()">
                                 <img src="static/images/spoof card 12.png" />
@@ -152,12 +162,13 @@
                       <div class="homeBtn" onclick="location.reload()">Home</div>
                       <div class="summaryBtn">Summary</div>
                     </div>
-                    
                 </div>
 
+                <!-- SUMMARY POP UP -->
                 <div class="containerSummary" style="display: none;">
                     <img src="static/images/CloseBtn.png" class="sumClsBtn" />
                     <div class="SpredictContainer">
+                        <!-- DITO DIN PAPALITAN YUNG URL NG IMAGE DEPENDE SA PREDICTION -->
                         <div class="sumCard" style="background-image: url(static/images/SpoofSummary.png); background-size: cover; background-repeat: no-repeat;">
                             <p class="sumFileN">Filename.mp3</p>
                             <p class="sumPrediction">Spoof</p>
@@ -193,15 +204,18 @@
                       </button>
                 </div>
 
-    
+                <!-- VIEW INFO (ARROW RIGHT in the left side of the screen) -->
                 <div class="viewInfo" style="display: block;">
                     <a class="arrow arrow-right" title="Model Information"></a>
                 </div>
+
+                <!-- More Info when the card is click part -->
                 <div class="containerMI" id="containerMI">
                     <img src="static/images/CloseBtn.png" class="closeMI" />
-                    <img src="static/images/B_info.png" class="changeMIbg" />
+                    <img src="static/images/B_info.png" class="changeMIbg" id="cardinfo"/>
                     <div class="MItextPosition">
                       <div class="MItext1">
+                        <!-- PAPALITAN YUNG MGA INFO DEPENDE SA PREDICTION -->
                         <h1 class="MIfilename">Filename.mp3</h1>
                         <div class="MIcontent1">
                           <h2>Prediction</h2>
@@ -212,16 +226,26 @@
                           <h3>Hybrid</h3>
                         </div>
                         <div class="MIcontent2 hidden">
+                            <!-- MAPAPALITAN YUNG TEXT CONTENT DEPENDE SA PREDICTION AT SA MODEL NA GAMIT -->
                           <h4>
                             A prediction of “Bonafide” means that this audio is more likely to
                             be genuine. The class is determined by a
                             <span class="clickable-threshold">custom threshold</span>.
                           </h4>
-              
+                          <!-- ITO PAG SPOOF -->
+                          <!-- <h4>
+                            A prediction of “Spoof” means that this audio is more likely to be 
+                            AI Generated. The class is determined by a 
+                            <span class="clickable-threshold">custom threshold</span>.
+                          </h4> -->
+                        
+                          
                           <h4>
                             Probability pertains to the chance that the audio is deepfake.
                           </h4>
+                          <!-- ito pipili depende kung HYbrid or HC yung gamit na model -->
                           <h4>“Hybrid Model” uses Handcrafted and WavLM Features.</h4>
+                          <!-- <h4>“HC Model” uses only HandcraftedFeatures.</h4> -->
                         </div>
                       </div>
                       <button class="arrwBtn2" id="toggleButton2">
@@ -229,13 +253,29 @@
                       </button>
                     </div>
                     <div class="CustomThreshold" style="display: none;">
-                      <img src="static/images/ThresHybrid.png" />
+                      <img src="static/images/ThresHybrid.png" class="threshold"/>
+                      <!-- <img src="static/images/thresHC.png" /> -->
+                       <!-- Pag HC yung model ito yung pop up na threshold -->
                     </div>
                     
-                  </div>
+                </div>
+                
             </div>
+            <!-- SWITCH MODEL -->
+            <div class="toggle-container">
+                <div class="toggle-circle">
+                  <img src="static/images/HybridLogo.png" style=""> 
+                </div>
+                <span class="toggle-text">Hybrid</span>
+              </div>
+
         </div>
+
+        <!-- Background blur effect -->
         <div class="blur-background"></div>
+        
+    </div>
+  
     </body>
     <script>
         let uploadedFiles = new Set(); // Keep track of uploaded files
@@ -252,6 +292,16 @@
 }
         
 function updateLogoVisibility() {
+    // Get the current screen width and height
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    // Check if the screen size is 390x844
+    if (width === 390 && height === 844) {
+        return; // Do nothing if screen size is 390x844
+    }
+
+    // Otherwise, proceed with the logo visibility logic
     const logo = document.getElementById('animatedContainerL');
     const container = document.getElementById('animatedContainer');
     
@@ -261,6 +311,8 @@ function updateLogoVisibility() {
         logo.style.display = 'block';
     }
 }
+
+// For audio list to display and able to delete and play
 
 function createAudioElement(file) {
     const audioContainer = document.createElement('div');
@@ -371,6 +423,7 @@ function handleFileUpload(files) {
     
     // Update logo visibility
     updateLogoVisibility();
+
 }
 
 // Event Listeners for file upload
@@ -394,7 +447,9 @@ uploadBox.addEventListener('drop', (e) => {
     handleFileUpload(e.dataTransfer.files);
 });
 
-// Event listener for the yes button and card animation
+
+
+// MORE INFO PART (when click the button it switch text)
 document.addEventListener('DOMContentLoaded', function() {
     // Info text switching functionality
     const text1 = document.getElementById("text1");
@@ -425,7 +480,7 @@ document.addEventListener('DOMContentLoaded', function() {
         showingText1 = !showingText1;
     });
 
-    // Yes button click handler
+    // Ito yung part na pag na click nayung YES BUTTON sa analyze i hide nya na other container and show cards
     const yesButton = document.querySelector('.PredictBox2');
     yesButton.addEventListener('click', function() {
         // Hide current containers
@@ -462,7 +517,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Update Container Switching for info button
+// CONTAINER SWITCHING (ito yung nag hahanda ng pag papalit palit ng containers)
 document.querySelector('.viewInfo').addEventListener('click', function() {
     const containers = {
         upload: document.getElementById('animatedContainer'),
@@ -517,6 +572,10 @@ document.querySelector('.viewInfo').addEventListener('click', function() {
     // Update logo visibility
     updateLogoVisibility();
 });
+
+
+//ITo yung sa card MORE INFO part yung mga prediction shits
+
 function showContainerMI() {
             const containerMI = document.getElementById('containerMI');
             const containerC = document.getElementById('animatedContainerC');
@@ -549,6 +608,7 @@ clickableThreshold.addEventListener("click", () => {
   }
 });
 
+//SCROLL SCRIPT NUNG SA SUMMARY PART
 document.addEventListener('DOMContentLoaded', function() {
     const toggleButton = document.getElementById('toggleButton3');
     const container = document.querySelector('.SpredictContainer');
@@ -597,7 +657,7 @@ document.addEventListener('DOMContentLoaded', function() {
     toggleButton.style.transition = 'transform 0.3s ease';
 });
 
-
+//SCROLL SCRIPT NUNG SA AUDIO LIST
 document.addEventListener('DOMContentLoaded', function() {
     const toggleButton = document.getElementById('toggleButton4');
     const container = document.querySelector('.audio-list');
@@ -741,6 +801,76 @@ function toggleBlurBackground(show) {
                 });
             });
 
+    //SWITCH MODEL PART
+    const toggleContainer = document.querySelector('.toggle-container');
+    const toggleText = document.querySelector('.toggle-text');
+   
+    
+    toggleContainer.addEventListener('click', () => {
+      toggleContainer.classList.toggle('active2');
+      if (toggleContainer.classList.contains('active2')) {
+        toggleText.textContent = 'HC';
+        
+      } else {
+        toggleText.textContent = 'Hybrid';
+      
+      }
+    });
+
+    //palitan si upload.png ng mobileupload.png for 390x844 dimensions
+
+    function updateImageSource() {
+        const uploadButton = document.getElementById('upload-button');
+        
+        // Check screen width and height
+        if (window.innerWidth === 390 && window.innerHeight === 844) {
+            uploadButton.src = "static/images/mobileupload.png"; // Mobile-specific image
+        } else {
+            uploadButton.src = "static/images/upload.png"; // Default image
+        }
+    }
+
+    function updateImageSource() {
+        const infoCard = document.getElementById('infocard');
+        
+        // Check screen width and height
+        if (window.innerWidth === 390 && window.innerHeight === 844) {
+            infoCard.src = "static/images/mobileB_info.png"; // Mobile-specific image
+        } else {
+            infoCard.src = "static/images/B_info.png"; // Default image
+        }
+    }
+
+       // Call the function on page load and window resize
+       window.addEventListener('load', updateImageSource);
+       window.addEventListener('resize', updateImageSource);
+
+       //para sa mobile analyze page
+
+       function updateImagesForSpecificDimensions() {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        // Update images if screen dimensions match 390x844
+        if (width === 390 && height === 844) {
+            document.getElementById("img1").src = "static/images/mobileanalyze.png";
+            document.getElementById("img2").src = "static/images/mobileyes.png";
+            document.getElementById("img3").src = "static/images/mobileNo.png";
+        } else {
+            // Restore default images for other screen sizes
+            document.getElementById("img1").src = "static/images/analyze.png";
+            document.getElementById("img2").src = "static/images/yes.png";
+            document.getElementById("img3").src = "static/images/No.png";
+        }
+    }
+
+    // Run the function on page load
+    updateImagesForSpecificDimensions();
+
+    // Add an event listener to handle window resizing dynamically
+    window.addEventListener("resize", updateImagesForSpecificDimensions);
+
+    
             
     </script>
 </html>
