@@ -81,7 +81,8 @@
     margin-top: 350px;
   }
 
-  .textContent p.active {
+  #text1,
+  #text2 {
     font-size: 17px;
     width: 280px;
   }
@@ -198,6 +199,10 @@
     animation: dealCard 0.8s ease forwards;
   }
 
+  .card1 img:hover {
+    transform: scale(1.1); /* Scale up on hover */
+  }
+
   .card1 img {
     width: 40%;
     height: 100%;
@@ -233,7 +238,6 @@
   }
 
   .changeMIbg {
-    content: url("/static/images/mobileB_info.png");
     margin-left: -55px;
     margin-top: -30px;
   }

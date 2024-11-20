@@ -14,7 +14,7 @@
         <title>For Real?</title>
     </head>
     <div>
-        <div class="background-container">
+        <div class="background-container" id="background-container" style="background-image: url('static/images/newBG.png');">            
             <div class="inputContainer">
                 <div class="FRBigLogo" id="animatedContainerL">
                     <img src="static/images/LOGO.png">
@@ -22,7 +22,7 @@
                 <div class="container" id="animatedContainer">
                     <div class="dot"></div>
                     <div class="light-beam"></div>
-                    <div class="upload-box">
+                    <div class="upload-box" id="upload-box" style="background-image: url('static/images/swing.png');">                        
                         <div class="upload-section">
                             <div class="content">
                                 <div class="box">
@@ -55,7 +55,7 @@
                 <div class="containerP" id="animatedContainerP" style="display: none;">
                 <div class="dot1"></div>
                     <div class="light-beam"></div>
-                    <div class="predict-box">
+                    <div class="predict-box" id="predict-box" style="background-image: url('static/images/swing.png');">                        
                         <div class="predict-section">
                             <div class="contentP">
                                 <div class="prediction-box">
@@ -88,8 +88,7 @@
 
                 <!-- MORE INFO PART -->
                 <div class="containerI" id="animatedContainerI" style="display: none;">
-                    <div class="info-box">
-                      <div class="textContent">
+                    <div class="info-box" id="info-box" style="background-image: url('static/images/infoBG.png');">                      <div class="textContent">
                         <img class="imgLogo" src="static/images/FORREAL.png" alt="FOR REAL" />
                         <p id="text1" class="active">
                           While we strive to provide accurate results, the system is not
@@ -897,11 +896,13 @@ function toggleBlurBackground(show) {
             document.getElementById("img1").src = "static/images/mobileanalyze.png";
             document.getElementById("img2").src = "static/images/mobileyes.png";
             document.getElementById("img3").src = "static/images/mobileNo.png";
+            document.getElementById("cardinfo").src = "static/images/mobileB_info.png";
         } else {
             // Restore default images for other screen sizes
             document.getElementById("img1").src = "static/images/analyze.png";
             document.getElementById("img2").src = "static/images/yes.png";
             document.getElementById("img3").src = "static/images/No.png";
+            document.getElementById("cardinfo").src = "static/images/B_info.png";
         }
     }
 
@@ -910,6 +911,30 @@ function toggleBlurBackground(show) {
 
     // Add an event listener to handle window resizing dynamically
     window.addEventListener("resize", updateImagesForSpecificDimensions);
+
+    function updateBackgroundImage() {
+        const backgroundContainer = document.getElementById('background-container');
+        const idContainer = document.getElementById('upload-box');
+        const infoBg = document.getElementById('info-box');
+        const predictBox = document.getElementById('predict-box');
+        
+        // Check if the screen size is exactly 390x844
+        if (window.innerWidth === 390 && window.innerHeight === 844) {
+            backgroundContainer.style.backgroundImage = "url('static/images/mobileBg.png')"; // Mobile background
+            idContainer.style.backgroundImage = "url('static/images/mobileswing.png')"; // Mobile ID
+            infoBg.style.backgroundImage = "url('static/images/infomobBg1.png')"; // Mobile INFO BG
+            predictBox.style.backgroundImage = "url('static/images/mobileswing.png')"
+        } else {
+            backgroundContainer.style.backgroundImage = "url('static/images/newBG.png')"; // Default background
+            idContainer.style.backgroundImage = "url('static/images/swing.png')"; // Default ID
+            infoBg.style.backgroundImage = "url('static/images/infoBG.png')"; // Default INFO BG
+            predictBox.style.backgroundImage = "url('static/images/swing.png')"; // Default ID
+        }
+    }
+    
+    // Call the function initially and on window resize
+    updateBackgroundImage();
+    window.addEventListener('resize', updateBackgroundImage);
 
     
             
