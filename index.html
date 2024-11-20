@@ -259,6 +259,17 @@
                     </div>
                     
                 </div>
+
+                <!-- LOADING ANIMATION PART -->
+                <div class="containerAnimation" id="animatedContainerAnime" style="display: none;">
+                    <video class="transparent-video" autoplay loop muted playsinline>
+                      <source
+                        src="static/images/cards-loading-loop.webm"
+                        type="video/webm"
+                      />
+                      Your browser does not support HTML5 video.
+                    </video>
+                  </div>
                 
             </div>
             <!-- SWITCH MODEL -->
@@ -482,32 +493,62 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Ito yung part na pag na click nayung YES BUTTON sa analyze i hide nya na other container and show cards
     const yesButton = document.querySelector('.PredictBox2');
-    yesButton.addEventListener('click', function() {
-        // Hide current containers
-        const predictContainer = document.getElementById('animatedContainerP');
-        const analyzeContainer = document.getElementById('animatedContainerA');
-        const infoContainer = document.getElementById('animatedContainerI');
-        const cardContainer = document.getElementById('animatedContainerC');
-        
-        // Hide current containers
-        predictContainer.style.display = 'none';
-        analyzeContainer.style.display = 'none';
-        infoContainer.style.display = 'none';
-        
+
+// Animation duration in milliseconds (can be adjusted)
+const ANIMATION_DURATION = 20000; // 40 seconds
+
+yesButton.addEventListener('click', function() {
+    // Hide all initial containers
+    const containersToHide = [
+        'animatedContainerP',
+        'animatedContainerA',
+        'animatedContainerI',
+        'animatedContainerC'
+    ];
+    
+    containersToHide.forEach(id => {
+        const container = document.getElementById(id);
+        if (container) {
+            container.style.display = 'none';
+        }
+    });
+
+    // Show loading animation container
+    const loadingContainer = document.getElementById('animatedContainerAnime');
+    if (loadingContainer) {
+        loadingContainer.style.display = 'block';
+    }
+
+    // After animation duration, hide loading and show cards
+    setTimeout(() => {
+        // Hide loading animation
+        if (loadingContainer) {
+            loadingContainer.style.display = 'none';
+        }
+
         // Show card container
-        cardContainer.style.display = 'block';
-        
+        const cardContainer = document.getElementById('animatedContainerC');
+        if (cardContainer) {
+            cardContainer.style.display = 'block';
+        }
+
         // Update viewInfo visibility
         updateViewInfoVisibility();
-        
+
         // Trigger card animation
         setTimeout(() => {
-            document.querySelector(".cardSpacing").classList.add("show-cards");
+            const cardSpacing = document.querySelector(".cardSpacing");
+            if (cardSpacing) {
+                cardSpacing.classList.add("show-cards");
+            }
         }, 100);
-        
+
         // Update logo visibility
         updateLogoVisibility();
-    });
+
+    }, ANIMATION_DURATION);
+});
+
 
     // Update the reload functionality to handle viewInfo visibility
     document.querySelector('.homeBtn').addEventListener('click', function() {

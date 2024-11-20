@@ -463,7 +463,8 @@ html {
   max-width: 700px;
   width: 100%;
   height: auto;
-  animation: slideDeck 4s ease-in-out forwards;
+  /* adjust deck start animation */
+  animation: slideDeck 2s ease-in-out forwards;
   z-index: 10;
 }
 
@@ -573,34 +574,34 @@ html {
 }
 
 .show-cards .card-row:first-child .card1:nth-child(1) {
-  animation-delay: 4.1s;
+  animation-delay: 2.1s;
 }
 .show-cards .card-row:first-child .card1:nth-child(2) {
-  animation-delay: 4.2s;
+  animation-delay: 2.2s;
 }
 .show-cards .card-row:first-child .card1:nth-child(3) {
-  animation-delay: 4.3s;
+  animation-delay: 2.3s;
 }
 .show-cards .card-row:first-child .card1:nth-child(4) {
-  animation-delay: 4.4s;
+  animation-delay: 2.4s;
 }
 .show-cards .card-row:first-child .card1:nth-child(5) {
-  animation-delay: 4.5s;
+  animation-delay: 2.5s;
 }
 .show-cards .card-row:last-child .card1:nth-child(1) {
-  animation-delay: 4.6s;
+  animation-delay: 2.6s;
 }
 .show-cards .card-row:last-child .card1:nth-child(2) {
-  animation-delay: 4.7s;
+  animation-delay: 2.7s;
 }
 .show-cards .card-row:last-child .card1:nth-child(3) {
-  animation-delay: 4.8s;
+  animation-delay: 2.8s;
 }
 .show-cards .card-row:last-child .card1:nth-child(4) {
-  animation-delay: 4.9s;
+  animation-delay: 2.9s;
 }
 .show-cards .card-row:last-child .card1:nth-child(5) {
-  animation-delay: 5s;
+  animation-delay: 3s;
 }
 
 @media (max-width: 1024px) {
@@ -650,7 +651,7 @@ html {
   --font-family: "Germania One"; /* Font family */
   --button-gap: 20px; /* Adjustable gap */
   --fade-in-duration: 2s; /* Animation duration */
-  --fade-in-delay: 5.2s; /* Animation delay */
+  --fade-in-delay: 3s; /* Animation delay */
 }
 
 .button-container {
