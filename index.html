@@ -629,24 +629,40 @@ function showContainerMI() {
         const clickableThreshold = document.querySelector(".clickable-threshold");
         const customThreshold = document.querySelector(".CustomThreshold");
 
-    // Toggle for the original content
-    toggleButton.addEventListener("click", () => {
-      MIcontent1.classList.toggle("hidden");
-      MIcontent2.classList.toggle("hidden");
-    });
+        // Initially hide the customThreshold
+        customThreshold.style.display = "none";
 
-    // Toggle for the threshold display
-   // Initially set the display to "none" in JavaScript
-customThreshold.style.display = "none";
+        // Toggle for the original content (MIcontent1, MIcontent2)
+        toggleButton.addEventListener("click", () => {
+        MIcontent1.classList.toggle("hidden");
+        MIcontent2.classList.toggle("hidden");
+        
+        // Adjust the button appearance after it's clicked
+        updateButtonStyle();
+        });
 
-clickableThreshold.addEventListener("click", () => {
-  // Check the display property and toggle it
-  if (customThreshold.style.display === "none") {
-    customThreshold.style.display = "block";
-  } else {
-    customThreshold.style.display = "none";
-  }
-});
+        // Toggle for the threshold display
+        clickableThreshold.addEventListener("click", () => {
+        // Check the display property and toggle it
+        if (customThreshold.style.display === "none") {
+            customThreshold.style.display = "block";
+        } else {
+            customThreshold.style.display = "none";
+        }
+        });
+
+        // Function to update the button style based on screen size
+        function updateButtonStyle() {
+        if (window.innerWidth <= 390) {  // Check if on mobile
+            toggleButton.style.transform = "translateX(-50%) scale(0.4)";  // Mobile style
+        } else {
+            toggleButton.style.transform = "translateX(-50%)";  // Desktop style
+        }
+        }
+
+        // Add event listener for window resize to update button style dynamically
+        window.addEventListener("resize", updateButtonStyle);
+
 
 //SCROLL SCRIPT NUNG SA SUMMARY PART
 document.addEventListener('DOMContentLoaded', function() {
