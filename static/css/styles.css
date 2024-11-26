@@ -1311,6 +1311,161 @@ html {
   cursor: pointer;
 }
 
+/* Settings POP UP */
+.settings-container {
+  position: absolute;
+
+  top: 1%;
+  left: 97%;
+}
+
+.settings-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.gear-set {
+  stroke: none;
+  stroke-width: 1;
+  stroke-dasharray: none;
+  stroke-linecap: butt;
+  stroke-dashoffset: 0;
+  stroke-linejoin: miter;
+  stroke-miterlimit: 4;
+  fill: #fff;
+  fill-rule: nonzero;
+  opacity: 1;
+}
+
+.gear-icon {
+  width: 24px;
+  height: 24px;
+  fill: #fff;
+}
+
+.popup {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 10px var(--text-color);
+  display: none;
+  min-width: 200px;
+  color: #000;
+}
+
+.popup.show {
+  display: block;
+}
+
+.toggle-container2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+.toggle-container3 {
+  color: gray;
+  text-decoration: line-through;
+}
+
+.toggle-container3.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.toggle-container3.disabled .toggle {
+  pointer-events: none;
+  background-color: gray;
+}
+
+.toggle input[disabled] {
+  cursor: not-allowed;
+}
+
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider2 {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: gray;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #fff;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+.slider2:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #fff;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--text-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background-color: var(--text-color);
+  color: var(--background-color);
+}
+
+body.dark-mode .popup {
+  background-color: var(--text-color);
+  color: var(--background-color);
+}
+
 /*  LOADING ANIMATION PART */
 /* Example CSS for styling the video */
 .transparent-video {
