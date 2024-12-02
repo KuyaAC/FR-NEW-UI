@@ -513,11 +513,17 @@ body.dark-mode .popup {
 }
 
 /* LOGO */
+
+@font-face {
+  font-family: "Panic";
+  src: url('../fonts/Panic.ttf') format('truetype'); 
+}
+
 .logoFR {
   position: absolute;
   top: 4%;
   left: 2%;
-  font-family: "Panicc";
+  font-family: "Panic";
   font-size: 35px;
   color: var(--text-color);
 }
@@ -559,6 +565,16 @@ body.dark-mode .popup {
 .loading-iconn {
   margin-top: 50px;
   margin-bottom: 50px;
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* cancel button */
@@ -579,4 +595,112 @@ body.dark-mode .popup {
 
 .loadSvg {
   stroke: var(--text-color);
+}
+
+@media only screen and (min-width: 390px) and (max-width: 844px) {
+
+  .upload-container {
+    width: 350px;
+    height: 400px;
+    margin-left: 35px;
+  }
+
+  .upload-icon svg {
+    margin-left: -70px;
+    margin-top: -50px;
+  }
+
+  .upload-text {
+    margin-top: -70px;
+  }
+
+  .logoFR {
+    top: 5%;
+    left: 8%;
+  }
+
+  .popup {
+    right: 50%;
+  }
+
+  .analyze-container {
+    width: 350px;
+    height: 400px;
+    margin-left: 35px;
+  }
+
+  #audio-list {
+    height: 40vh;
+    margin-top: -20px;
+    width: 110%;
+    margin-left: -10px;
+  }
+
+  .audio-list2 {
+    height: 40vh;
+    width: 110%;
+    margin-left: -10px;
+    margin-top: -20px;
+  }
+
+  .analyze-btn {
+    margin-left: -35px;
+  }
+
+  .again-btn {
+    margin-left: -65px;
+  }
+
+  .play-btn {
+    z-index: 1;
+    margin-right: -10px;
+  }
+
+  .file-name {
+    font-size: 0.7rem;
+    margin-top: 5px;
+  }
+
+
+  .play-text {
+    margin-right: 7px;
+    font-size: 13px;
+  }
+
+  .duration {
+    font-size: 0.70rem;
+  }
+
+  .loading-container,
+  .result-container {
+    width: 350px;
+    height: 400px;
+    margin-left: 35px;
+  }
+
+  .loading-iconn {
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+  .progress-bar {
+    width: 200px;
+    margin-left: 40px;
+    margin-top: -20px;
+  }
+
+  .cancel-btn {
+    margin-top: -30px;
+    margin-left: -35px;
+  }
+
+  #progress-text {
+    margin-bottom: -20px;
+  }
+
+  .prediction-indicator {
+    padding: 4px 1px;
+  }
+
+
 }
